@@ -8,8 +8,17 @@
       </h3>
       {% if n.sector %}<div style="font-size: 12px; color: #64748b; margin-top: 2px;">{{ n.sector }}</div>{% endif %}
     </div>
-    <div class="score-pill {{ n.opportunity_category|lower }}">
-      {{ n.opportunity_score }}/100 {{ n.opportunity_category }}
+    <div style="text-align: right;">
+      <div class="score-pill {{ n.opportunity_category|lower }}">
+        {{ n.opportunity_score }}/100 {{ n.opportunity_category }}
+      </div>
+      {% if n.llm_tier and n.llm_tier not in ('unknown', 'drop') %}
+      <div style="margin-top: 6px; font-size: 11px; color: #475569;">
+        LLM tier <strong>{{ n.llm_tier }}</strong>
+        {% if n.triage_final %} ({{ n.triage_final|round(0)|int }}){% endif %}
+        {% if n.llm_category %} · {{ n.llm_category|replace('_', ' ') }}{% endif %}
+      </div>
+      {% endif %}
     </div>
   </div>
 
@@ -142,6 +151,19 @@
       <a href="mailto:{{ n.ip_email }}?subject={{ n.draft_email_subject|urlencode }}" style="color: #2563eb; margin-left: 8px;">
         Send Expression of Interest →
       </a>
+    </div>
+    {% endif %}
+
+    {% if n.llm_situation or n.llm_buyer_hypothesis or n.llm_why %}
+    <div style="margin-top: 16px; padding: 12px 16px; background: #f1f5f9; border-radius: 6px; border-left: 3px solid #475569;">
+      {% if n.llm_situation %}
+      <div style="font-size: 13px; color: #1e293b; margin-bottom: 8px;">{{ n.llm_situation }}</div>
+      {% elif n.llm_why %}
+      <div style="font-size: 13px; color: #1e293b; margin-bottom: 8px;">{{ n.llm_why }}</div>
+      {% endif %}
+      {% if n.llm_buyer_hypothesis %}
+      <div style="font-size: 12px; color: #334155;"><strong>Buyer hypothesis:</strong> {{ n.llm_buyer_hypothesis }}</div>
+      {% endif %}
     </div>
     {% endif %}
 

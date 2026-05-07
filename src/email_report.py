@@ -93,14 +93,28 @@ class AnalysedNotice:
         self.draft_email_subject: str = ""
         self.draft_email_body: str = ""
 
+        # LLM triage layer (set by src.triage_llm.apply_llm_triage)
+        self.llm_tier: str = ""              # L1|L2|L3|watch|drop|unknown
+        self.llm_category: str = ""          # pre_pack_buyer_search | ...
+        self.llm_why: str = ""               # one-sentence rationale
+        self.llm_evidence: str = ""          # short quote
+        self.llm_situation: str = ""         # 2-3 sentence writeup (top N only)
+        self.llm_buyer_hypothesis: str = ""  # one-sentence angle (top N only)
+        self.triage_final: float = 0.0       # blended score used for ranking
+
 
 def generate_email_html(notices: list[AnalysedNotice], date_str: str = "") -> str:
     """Render the email HTML from the Jinja2 template."""
     if not date_str:
         date_str = datetime.utcnow().strftime("%d %B %Y")
 
-    # Sort by opportunity score descending
-    notices_sorted = sorted(notices, key=lambda n: n.opportunity_score, reverse=True)
+    # Sort by blended LLM-triage score if present, else by heuristic score
+    def _sort_key(n):
+        return (
+            getattr(n, "triage_final", 0) or n.opportunity_score,
+            n.opportunity_score,
+        )
+    notices_sorted = sorted(notices, key=_sort_key, reverse=True)
 
     # Group by category
     high = [n for n in notices_sorted if n.opportunity_category == "HIGH"]
@@ -140,10 +154,19 @@ def generate_email_plain(notices: list[AnalysedNotice], date_str: str = "") -> s
         "",
     ]
 
-    notices_sorted = sorted(notices, key=lambda n: n.opportunity_score, reverse=True)
+    notices_sorted = sorted(
+        notices,
+        key=lambda n: (getattr(n, "triage_final", 0) or n.opportunity_score, n.opportunity_score),
+        reverse=True,
+    )
 
     for n in notices_sorted:
-        lines.append(f"[{n.opportunity_category}] {n.company_name} (Score: {n.opportunity_score}/100)")
+        tier_tag = f" [LLM {n.llm_tier}]" if getattr(n, "llm_tier", "") and n.llm_tier not in ("unknown", "drop") else ""
+        lines.append(f"[{n.opportunity_category}]{tier_tag} {n.company_name} (Score: {n.opportunity_score}/100)")
+        if getattr(n, "llm_buyer_hypothesis", ""):
+            lines.append(f"  Buyer hypothesis: {n.llm_buyer_hypothesis}")
+        elif getattr(n, "llm_why", ""):
+            lines.append(f"  LLM: {n.llm_why}")
         if n.company_number:
             lines.append(f"  Company No: {n.company_number}")
         lines.append(f"  Type: {n.notice_type}")
@@ -204,10 +227,15 @@ def send_email(notices: list[AnalysedNotice]) -> bool:
     date_str = datetime.utcnow().strftime("%d %B %Y")
     date_file = datetime.utcnow().strftime("%Y-%m-%d")
     high_count = sum(1 for n in notices if n.opportunity_category == "HIGH")
+    l1_count = sum(1 for n in notices if getattr(n, "llm_tier", "") == "L1")
+    l2_count = sum(1 for n in notices if getattr(n, "llm_tier", "") == "L2")
 
-    subject = f"Gazette Insolvency Report – {date_str}"
-    if high_count:
-        subject += f" – {high_count} high-potential opportunities"
+    # Em dashes are banned; use commas. Surface the L1/L2 count when LLM triage ran.
+    subject = f"Gazette Insolvency Report, {date_str}"
+    if l1_count or l2_count:
+        subject += f", {l1_count} act, {l2_count} schedule"
+    elif high_count:
+        subject += f", {high_count} high-potential opportunities"
 
     # Use mixed multipart to support both alternative content and attachments
     msg = MIMEMultipart("mixed")
