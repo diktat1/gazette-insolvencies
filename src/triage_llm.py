@@ -107,13 +107,15 @@ DO NOT FABRICATE deal sizes, employee numbers, or banker affiliations not in the
 
 STAGE3_SYSTEM = """You are the writer for a UK distressed-M&A buyer's daily worklist. You receive a pre-ranked top set of insolvency notices and produce, for each, a tight one-paragraph situation description plus a one-line buyer hypothesis.
 
+Each input may include an `enrichment` block from a web-grounded Stage 2.5 verification (verified status, ip_firm, case_partner, principals, buyer_window, industry, key_facts). When enrichment is present, treat it as a trusted second source and weave it into your situation/buyer_hypothesis. If enrichment.verified == "already_sold" or "stale", state that the situation is already resolved and the hypothesis is moot.
+
 Voice: plain, factual, no marketing language. No em dashes (—) or en dashes (–) anywhere; use commas, parentheses, or split sentences instead.
 
 Hard rules:
-- NEVER fabricate names, sizes, banker affiliations, or revenue figures not in the input.
+- NEVER fabricate names, sizes, banker affiliations, or revenue figures not in the input or enrichment.
 - If a fact is missing, omit it; do not invent.
-- buyer_hypothesis: one sentence on the most plausible buyer angle (sector roll-up, asset-only carve-out, going-concern bid, secured-creditor pre-pack), grounded in the notice signals (charges, SIC, website, accounts type, IP firm). If signals don't support a specific angle, write "no specific angle; situational shape only".
-- situation: 2-3 sentences. What was the company, what stage of insolvency, what is the time window for buyer engagement.
+- buyer_hypothesis: one sentence on the most plausible buyer angle (sector roll-up, asset-only carve-out, going-concern bid, secured-creditor pre-pack), grounded in the notice signals (charges, SIC, website, accounts type, IP firm) AND any enrichment signals (industry, principals, buyer_window). If signals don't support a specific angle, write "no specific angle; situational shape only".
+- situation: 2-3 sentences. What was the company, what stage of insolvency, who's the IP (use enrichment.ip_firm if present), what is the time window for buyer engagement (use enrichment.buyer_window if present).
 
 Output: {"writeups": [{"id": "<id>", "situation": "...", "buyer_hypothesis": "..."}, ...]}
 JSON only, no markdown.
@@ -413,9 +415,99 @@ def stage2_blend(classifications: dict, notices_by_id: dict, features: dict) -> 
 # Stage 3: focused write for top N
 # ---------------------------------------------------------------------------
 
-def stage3_writeups(top: list[dict], notices_by_id: dict, date: str) -> dict:
+ENRICH_SYSTEM = """You are an enrichment researcher for a UK insolvency / distressed-asset sweep.
+
+Given a single statutory notice already flagged as actionable (e.g. administrator appointment, voluntary winding-up at a viable trading entity), run a targeted web check to:
+1. Confirm the company is still trading (or the appointment is fresh and assets are intact, not already sold).
+2. Identify the named insolvency practitioner / administrator firm (Begbies Traynor, FRP, Interpath, etc.) and their case partner if visible.
+3. Identify any directors, owners, or relevant principals worth contacting.
+4. Estimate the buyer-search window (days/weeks until administrator publishes statement of proposals, typically 8 weeks but pre-pack deals close in days).
+5. Find any signals about the company's industry, employee count, revenue, premises, brand recognition.
+
+Return JSON only, no prose:
+{
+  "id": "<id from input>",
+  "verified": "trading|already_sold|stale|unknown",
+  "ip_firm": "<insolvency practitioner firm name or 'pending'>",
+  "case_partner": "<named partner or 'pending'>",
+  "principals": ["Name (Role)", ...],
+  "buyer_window": "<short phrase, e.g. 'within 5 days for pre-pack', 'within 8 weeks before SoP'>",
+  "industry": "<short label>",
+  "key_facts": ["short fact", ...],
+  "additional_sources": ["url", ...]
+}
+
+If the company turns out to be already sold or struck off, set verified accordingly so it can be demoted.
+"""
+
+
+def _enrich_one_notice(notice, classification: dict, date: str) -> dict | None:
+    """Single web-grounded enrichment call for one top notice."""
+    enrich_model = os.environ.get("ENRICH_MODEL", "qwen/qwen3-235b-a22b-2507:online")
+    client = _client()
+    user = (
+        f"DATE (UTC): {date}\n\n"
+        f"NOTICE TO VERIFY:\n{json.dumps({
+            'id': classification.get('id'),
+            'compact': _compact(notice),
+            'stage1_tier': classification.get('tier'),
+            'stage1_why': classification.get('why'),
+            'category': classification.get('category'),
+        }, indent=2, ensure_ascii=False)}\n\n"
+        "Run a web search to verify the company status and enrich. Output JSON only, schema in system prompt."
+    )
+    try:
+        resp = client.chat.completions.create(
+            model=enrich_model,
+            messages=[
+                {"role": "system", "content": ENRICH_SYSTEM},
+                {"role": "user", "content": user},
+            ],
+            response_format={"type": "json_object"},
+            temperature=0.1,
+            max_tokens=2000,
+            extra_headers={
+                "HTTP-Referer": "https://github.com/diktat1/gazette-insolvencies",
+                "X-Title": "gazette-insolvencies (enrich)",
+            },
+        )
+        return _parse_json(resp.choices[0].message.content or "")
+    except Exception as e:  # noqa: BLE001
+        logger.warning("[stage2.5] enrich failed for %s: %s", classification.get("id"), e)
+        return None
+
+
+def stage2_5_enrich(top: list[dict], notices_by_id: dict, date: str) -> dict[str, dict]:
+    """Web-grounded enrichment on top notices. Returns dict[id -> enrichment]."""
+    enrich_top_n = int(os.environ.get("ENRICH_TOP_N", "5"))
+    targets = top[:enrich_top_n]
+    if not targets:
+        return {}
+    logger.info("[stage2.5] enriching top %d notices via :online", len(targets))
+    enrichments: dict[str, dict] = {}
+    concurrency = min(4, len(targets))
+    from concurrent.futures import ThreadPoolExecutor, as_completed  # local import to avoid top-of-file noise
+    with ThreadPoolExecutor(max_workers=concurrency) as ex:
+        futs = {
+            ex.submit(_enrich_one_notice, notices_by_id.get(r["id"]), r, date): r["id"]
+            for r in targets if notices_by_id.get(r["id"])
+        }
+        for fut in as_completed(futs):
+            iid = futs[fut]
+            result = fut.result()
+            if isinstance(result, dict):
+                enrichments[iid] = result
+                verified = result.get("verified", "unknown")
+                logger.info("[stage2.5] %s: verified=%s, ip_firm=%s, principals=%d",
+                            iid, verified, result.get("ip_firm", "?"),
+                            len(result.get("principals") or []))
+    return enrichments
+
+
+def stage3_writeups(top: list[dict], notices_by_id: dict, date: str, enrichments: dict | None = None) -> dict:
     if not top:
         return {}
+    enrichments = enrichments or {}
     inputs = []
     for r in top:
         n = notices_by_id.get(r["id"])
@@ -427,6 +519,7 @@ def stage3_writeups(top: list[dict], notices_by_id: dict, date: str) -> dict:
             "tier": r["tier"],
             "category": r["category"],
             "final": r["final"],
+            "enrichment": enrichments.get(r["id"]) or {},
         })
     user = (
         f"DATE (UTC): {date}\n\n"
@@ -544,8 +637,23 @@ def apply_llm_triage(notices: list, date: str | None = None) -> list:
     keep_min = TIER_ORDER.get(keep_threshold, 1)
     eligible = [r for r in ranked if TIER_ORDER.get(r["tier"], 0) >= keep_min]
     top = eligible[:top_n]
+
+    # Stage 2.5 — web-grounded enrichment on top items
     try:
-        writeups = stage3_writeups(top, notices_by_id, date)
+        enrichments = stage2_5_enrich(top, notices_by_id, date)
+    except Exception as e:  # noqa: BLE001
+        logger.warning("[stage2.5] failed, continuing without enrichment: %s", e)
+        enrichments = {}
+
+    # Demote items whose enrichment reveals already_sold / stale
+    for r in top:
+        e = enrichments.get(r["id"]) or {}
+        if e.get("verified") in ("already_sold", "stale"):
+            logger.info("[stage2.5] demoting %s (verified=%s)", r["id"], e.get("verified"))
+            r["tier"] = "L3"
+
+    try:
+        writeups = stage3_writeups(top, notices_by_id, date, enrichments=enrichments)
     except Exception as e:  # noqa: BLE001
         logger.warning("[stage3] failed, continuing without writeups: %s", e)
         writeups = {}
