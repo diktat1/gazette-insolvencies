@@ -64,8 +64,16 @@ def analyse_notices(lookback_days: Optional[int] = None) -> list[AnalysedNotice]
     if config.MIN_OPPORTUNITY_SCORE > 0:
         results = [r for r in results if r.opportunity_score >= config.MIN_OPPORTUNITY_SCORE]
 
-    # Sort by score descending
+    # Sort by heuristic score descending (baseline; LLM triage may re-rank)
     results.sort(key=lambda r: r.opportunity_score, reverse=True)
+
+    # LLM triage layer: filter -> rank -> write. Heuristic stays as-is; the
+    # LLM tier blends in. Falls back to heuristic-only ranking on any error.
+    try:
+        from src.triage_llm import apply_llm_triage
+        results = apply_llm_triage(results)
+    except Exception:
+        logger.exception("LLM triage failed; using heuristic-only ranking")
 
     logger.info("Analysis complete: %d notices ready for report", len(results))
     return results

@@ -44,6 +44,15 @@ jobs:
           EMAIL_FROM: ${{ secrets.SMTP_USER }}
           EMAIL_TO: ${{ secrets.EMAIL_TO }}
           LOOKBACK_DAYS: 1
+          # LLM triage layer (qwen via OpenRouter; module is a no-op without key)
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          OPENROUTER_MODEL: qwen/qwen3-235b-a22b-2507
+          BATCH_SIZE: 15
+          LLM_CONCURRENCY: 8
+          RETRY_LIMIT: 3
+          TRIAGE_TOP_N: 10
+          HEURISTIC_WEIGHT: 0.5
+          TIER_WEIGHT: 0.5
           # Outreach settings
           OUTREACH_SENDER_NAME: "Kamil Altintasoglu"
           OUTREACH_SENDER_PHONE: "+44 7985 250 883"
@@ -57,12 +66,12 @@ jobs:
         run: |
           python main.py --outreach
 
-      - name: Commit outreach database
+      - name: Commit outreach database and triage audit logs
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git add data/outreach.db
-          git diff --staged --quiet || git commit -m "Update outreach database [skip ci]"
+          git add data/outreach.db data/triage-decisions-*.csv 2>/dev/null || true
+          git diff --staged --quiet || git commit -m "Update outreach database and triage logs [skip ci]"
 
       - name: Push changes
         uses: ad-m/github-push-action@master
