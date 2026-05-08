@@ -2,9 +2,9 @@ name: Daily Gazette Insolvency Report
 
 on:
   schedule:
-    # Run every day at 8:00 AM UK time (UTC in winter, UTC+1 in summer)
-    # Using 7:00 UTC to approximate 8:00 UK time
-    - cron: '0 7 * * *'
+    # 7am UK year-round (dual cron handles DST)
+    - cron: '0 7 * 11,12,1,2,3 *'  # 7am UTC = 7am GMT (Nov-Mar)
+    - cron: '0 6 * 4,5,6,7,8,9,10 *'  # 6am UTC = 7am BST (Apr-Oct)
   workflow_dispatch:  # Allow manual trigger from GitHub UI
     inputs:
       test_mode:
