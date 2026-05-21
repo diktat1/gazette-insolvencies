@@ -2,10 +2,11 @@ name: Daily Gazette Insolvency Report
 
 on:
   schedule:
-    # Target delivery by 07:00 UK. Start early with a buffer for GitHub
-    # Actions scheduled-queue lag (can be 1-2h+), dual cron handles DST.
-    - cron: '0 6 * 11,12,1,2,3 *'  # 06:00 UTC = 06:00 GMT (Nov-Mar)
-    - cron: '0 5 * 4,5,6,7,8,9,10 *'  # 05:00 UTC = 06:00 BST (Apr-Oct)
+    # Must LAND by 07:00 UK. Budget ~3h for job runtime (UK+RO enrichment is
+    # not instant) + GitHub Actions scheduled-queue lag (can be 1-2h+).
+    # So start ~3h ahead. Dual cron handles DST.
+    - cron: '0 4 * 11,12,1,2,3 *'   # 04:00 UTC = 04:00 GMT (Nov-Mar) → ~3h before 07:00
+    - cron: '0 3 * 4,5,6,7,8,9,10 *' # 03:00 UTC = 04:00 BST (Apr-Oct) → ~3h before 07:00
   workflow_dispatch:  # Allow manual trigger from GitHub UI
     inputs:
       test_mode:
