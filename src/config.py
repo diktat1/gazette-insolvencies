@@ -59,6 +59,10 @@ ROMANIA_LOOKBACK_DAYS = int(os.getenv("ROMANIA_LOOKBACK_DAYS", "1"))
 # Cap on companies enriched per run (ANAF financials are 1 req/s, so this
 # bounds runtime). The first backfill run can raise this via env.
 ROMANIA_MAX_COMPANIES = int(os.getenv("ROMANIA_MAX_COMPANIES", "40"))
+# Auction feed (licitatii-insolventa.ro): live asset sales with practitioner
+# contact on the page. On by default when Romania is enabled.
+ROMANIA_AUCTIONS_ENABLED = os.getenv("ROMANIA_AUCTIONS_ENABLED", "true").lower() in ("true", "1", "yes")
+ROMANIA_AUCTIONS_MAX = int(os.getenv("ROMANIA_AUCTIONS_MAX", "30"))
 
 # ---------------------------------------------------------------------------
 # Database

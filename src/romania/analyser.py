@@ -126,6 +126,15 @@ def analyse_romania_notices(lookback_days: Optional[int] = None) -> list[Analyse
         finally:
             mark_notice_processed(e.notice_id, e.company_name, e.published or "")
 
+    # Asset-sale feed: live auctions with practitioner contact on the page.
+    if config.ROMANIA_AUCTIONS_ENABLED:
+        try:
+            from src.romania.auctions import fetch_auction_opportunities
+            auctions = fetch_auction_opportunities(max_listings=config.ROMANIA_AUCTIONS_MAX)
+            results.extend(auctions)
+        except Exception:
+            logger.exception("Romania auctions feed failed; continuing")
+
     if config.MIN_OPPORTUNITY_SCORE > 0:
         results = [r for r in results if r.opportunity_score >= config.MIN_OPPORTUNITY_SCORE]
     results.sort(key=lambda r: r.opportunity_score, reverse=True)
