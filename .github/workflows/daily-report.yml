@@ -45,6 +45,10 @@ jobs:
           EMAIL_FROM: ${{ secrets.SMTP_USER }}
           EMAIL_TO: ${{ secrets.EMAIL_TO }}
           LOOKBACK_DAYS: 1
+          # Romania module (BPI via lege5.ro + ANAF enrichment) - appended to same report
+          ROMANIA_ENABLED: "true"
+          ROMANIA_LOOKBACK_DAYS: 1
+          ROMANIA_MAX_COMPANIES: 40
           # LLM triage layer (qwen via OpenRouter; module is a no-op without key)
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
           OPENROUTER_MODEL: qwen/qwen3-235b-a22b-2507

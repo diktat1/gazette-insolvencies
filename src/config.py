@@ -52,6 +52,15 @@ DAILY_SEND_TIME = os.getenv("DAILY_SEND_TIME", "08:00")
 MIN_OPPORTUNITY_SCORE = int(os.getenv("MIN_OPPORTUNITY_SCORE", "0"))
 
 # ---------------------------------------------------------------------------
+# Romania module (BPI via lege5.ro index + ANAF enrichment)
+# ---------------------------------------------------------------------------
+ROMANIA_ENABLED = os.getenv("ROMANIA_ENABLED", "false").lower() in ("true", "1", "yes")
+ROMANIA_LOOKBACK_DAYS = int(os.getenv("ROMANIA_LOOKBACK_DAYS", "1"))
+# Cap on companies enriched per run (ANAF financials are 1 req/s, so this
+# bounds runtime). The first backfill run can raise this via env.
+ROMANIA_MAX_COMPANIES = int(os.getenv("ROMANIA_MAX_COMPANIES", "40"))
+
+# ---------------------------------------------------------------------------
 # Database
 # ---------------------------------------------------------------------------
 DB_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)), "data", "gazette_tracker.db")

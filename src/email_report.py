@@ -25,6 +25,9 @@ class AnalysedNotice:
     """All the data we've gathered about a single insolvency notice."""
 
     def __init__(self):
+        # Source country: "UK" (Gazette) or "RO" (Romania/BPI)
+        self.country: str = "UK"
+
         # From Gazette
         self.notice_id: str = ""
         self.notice_url: str = ""

@@ -65,6 +65,17 @@ def run_once(
     logger.info("Starting Gazette insolvency analysis...")
     results = analyse_notices(lookback_days=days)
 
+    # Romania module: append RO opportunities into the same report. Isolated so
+    # any Romanian-side failure can never break the UK report.
+    if config.ROMANIA_ENABLED:
+        try:
+            from src.romania import analyse_romania_notices
+            ro_results = analyse_romania_notices(lookback_days=days)
+            logger.info("Romania: appending %d opportunities to the report", len(ro_results))
+            results.extend(ro_results)
+        except Exception:
+            logger.exception("Romania module failed; continuing with UK report only")
+
     if not results:
         logger.info("No new insolvency notices found.")
         return
