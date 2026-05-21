@@ -5,7 +5,9 @@ AnalysedNotice, so RO opportunities drop straight into the daily UK email.
 """
 
 import logging
+from dataclasses import dataclass
 from typing import Optional
+from urllib.parse import quote
 
 from src import config
 from src.email_report import AnalysedNotice
@@ -13,8 +15,19 @@ from src.db import is_notice_processed, mark_notice_processed
 from src.romania.feed import fetch_ro_entries
 from src.romania.anaf import lookup_status_batch, get_financials
 from src.romania.scorer import score_ro
+from src.romania.ecris import lookup_practitioner
+from src.romania.contacts import resolve_contact
 
 logger = logging.getLogger(__name__)
+
+
+@dataclass
+class ROPractitioner:
+    name: str = ""
+    role: str = ""
+    firm: str = ""
+    email: str = ""
+    phone: str = ""
 
 
 def _fmt_ron(v) -> str:
@@ -85,6 +98,27 @@ def analyse_romania_notices(lookback_days: Optional[int] = None) -> list[Analyse
             n.opportunity_score = assessment["score"]
             n.opportunity_category = assessment["category"]
             n.opportunity_signals = assessment["signals"]
+
+            # Practitioner lookup (free, via ECRIS) for the cases worth pursuing.
+            # ECRIS lists the administrator/lichidator judiciar only for some
+            # courts, so this is best-effort; contact resolved from the local
+            # directory where the firm is known.
+            if assessment["category"] in ("HIGH", "MEDIUM"):
+                prac = lookup_practitioner(e.dosar)
+                if prac.get("firm"):
+                    contact = resolve_contact(prac["firm"])
+                    n.practitioners = [ROPractitioner(
+                        name=prac["firm"], role=prac.get("role", "Insolvency practitioner"),
+                        firm=prac["firm"], email=contact.get("email", ""),
+                        phone=contact.get("phone", ""),
+                    )]
+                    n.google_search_url = (
+                        contact.get("website")
+                        or f"https://www.google.com/search?q={quote(prac['firm'] + ' insolventa contact')}"
+                    )
+                    if contact.get("email"):
+                        n.ip_email = contact["email"]
+                        n.draft_email_subject = f"Expression of interest - {st.get('name') or e.company_name}"
 
             results.append(n)
         except Exception:
