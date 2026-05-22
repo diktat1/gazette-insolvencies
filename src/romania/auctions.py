@@ -23,7 +23,13 @@ BASE = "https://www.licitatii-insolventa.ro"
 HEADERS = {
     "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 "
                   "(KHTML, like Gecko) Chrome/124.0 Safari/537.36",
+    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
     "Accept-Language": "ro,en;q=0.9",
+    "Accept-Encoding": "gzip, deflate, br",
+    "Upgrade-Insecure-Requests": "1",
+    "Sec-Fetch-Dest": "document",
+    "Sec-Fetch-Mode": "navigate",
+    "Sec-Fetch-Site": "none",
 }
 # asset-rich categories worth surfacing (skip auto/altele noise)
 CATEGORIES = {
@@ -54,14 +60,26 @@ def _listing_id(url: str) -> str:
 
 
 def fetch_auction_opportunities(max_listings: int = 30) -> list[AnalysedNotice]:
+    # Use a session and warm it on the homepage first so Cloudflare issues its
+    # clearance cookies; bare requests from datacenter IPs (GitHub runners) get
+    # challenged and return non-200.
+    sess = requests.Session()
+    sess.headers.update(HEADERS)
+    try:
+        sess.get(BASE, timeout=25)
+        time.sleep(1.0)
+    except Exception as exc:
+        logger.warning("auctions: homepage warm-up failed: %s", exc)
+
     # 1. collect recent detail URLs across asset-rich categories
     detail_urls: list[str] = []
     seen: set[str] = set()
     per_cat = max(4, max_listings // len(CATEGORIES))
     for cat in CATEGORIES:
         try:
-            r = requests.get(f"{BASE}/{cat}", headers=HEADERS, timeout=25)
+            r = sess.get(f"{BASE}/{cat}", timeout=25)
             if r.status_code != 200:
+                logger.warning("auctions: category %s -> HTTP %s", cat, r.status_code)
                 continue
         except Exception as exc:
             logger.warning("auctions: category %s failed: %s", cat, exc)
@@ -86,7 +104,7 @@ def fetch_auction_opportunities(max_listings: int = 30) -> list[AnalysedNotice]:
         if is_notice_processed(nid):
             continue
         try:
-            r = requests.get(url, headers=HEADERS, timeout=25)
+            r = sess.get(url, timeout=25)
             if r.status_code != 200:
                 continue
             html = r.text
