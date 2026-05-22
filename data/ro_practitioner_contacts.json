@@ -1,8 +1,13 @@
 {
   "CITR Filiala Bucuresti SPRL": {
+    "auctions": "https://sales.citr.ro",
     "email": "bucuresti@citr.ro",
     "phone": "",
-    "website": "https://www.citr.ro",
-    "auctions": "https://sales.citr.ro"
+    "website": "https://www.citr.ro"
+  },
+  "DT Restructuring SPRL": {
+    "email": "office@dtrestructuring.ro",
+    "phone": "0731455395",
+    "website": "https://dtrestructuring.ro"
   }
 }
