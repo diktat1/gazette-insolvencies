@@ -104,11 +104,19 @@ def analyse_romania_notices(lookback_days: Optional[int] = None) -> list[Analyse
             # courts, so this is best-effort; contact resolved from the local
             # directory where the firm is known.
             if assessment["category"] in ("HIGH", "MEDIUM"):
-                prac = lookup_practitioner(e.dosar)
+                prac = lookup_practitioner(e.dosar, company_name=st.get("name") or e.company_name)
+                # Court-confirmed debtor status screens out creditor false positives.
+                if prac.get("is_debtor") is True:
+                    n.opportunity_signals = ["Debtor in its own insolvency (court-confirmed)"] + n.opportunity_signals
+                elif prac.get("is_debtor") is False:
+                    n.opportunity_signals = n.opportunity_signals + ["Note: appears only as a creditor in this case - verify it is itself insolvent"]
                 if prac.get("firm"):
                     contact = resolve_contact(prac["firm"])
+                    role = prac.get("role", "Insolvency practitioner")
+                    if prac.get("source") == "soluţie":
+                        role += " (named in court decision)"
                     n.practitioners = [ROPractitioner(
-                        name=prac["firm"], role=prac.get("role", "Insolvency practitioner"),
+                        name=prac["firm"], role=role,
                         firm=prac["firm"], email=contact.get("email", ""),
                         phone=contact.get("phone", ""),
                     )]
