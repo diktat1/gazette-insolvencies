@@ -103,7 +103,8 @@ def lookup_practitioner(dosar: str, company_name: str | None = None) -> dict:
     for sol in _SOL_RE.findall(text):
         m = _PRAC_TEXT_RE.search(_unescape(sol))
         if m:
-            return {"firm": re.sub(r"\s+", " ", m.group(2)).strip(),
-                    "role": m.group(1).lower(), "source": "soluţie", "is_debtor": is_debtor}
+            firm = re.sub(r"^pe\s+", "", re.sub(r"\s+", " ", m.group(2)).strip(), flags=re.I)
+            return {"firm": firm, "role": m.group(1).lower(),
+                    "source": "soluţie", "is_debtor": is_debtor}
 
     return {"is_debtor": is_debtor} if is_debtor else {}

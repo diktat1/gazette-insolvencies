@@ -5,9 +5,19 @@
     "phone": "",
     "website": "https://www.citr.ro"
   },
+  "Catedral Insolv IPURL": {
+    "email": "mozalx@yahoo.com",
+    "phone": "0743760064",
+    "website": ""
+  },
   "DT Restructuring SPRL": {
     "email": "office@dtrestructuring.ro",
     "phone": "0731455395",
     "website": "https://dtrestructuring.ro"
+  },
+  "Expert Insolventa SPRL": {
+    "email": "office@expertinsolventa.ro",
+    "phone": "0354405232",
+    "website": "https://expertinsolventa.ro"
   }
 }
