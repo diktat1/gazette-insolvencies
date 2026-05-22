@@ -4,7 +4,9 @@ and returns fully-analysed results ready for the email report.
 """
 
 import logging
+import os
 import time
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from typing import Optional
 
 from src import config
@@ -34,31 +36,26 @@ def analyse_notices(lookback_days: Optional[int] = None) -> list[AnalysedNotice]
     entries = fetch_latest_notices(lookback_days)
     logger.info("Fetched %d raw notices from the Gazette", len(entries))
 
+    # Skip already-processed notices up front (serial; SQLite reads).
+    fresh = [e for e in entries if not is_notice_processed(e.notice_id)]
+    logger.info("Analysing %d new notices (%d already processed)",
+                len(fresh), len(entries) - len(fresh))
+
+    # Enrich notices concurrently - the per-notice work is I/O-bound (Companies
+    # House + website lookups). CH calls are globally rate-limited inside the
+    # CH client, so this stays within API limits. DB writes (mark_processed)
+    # happen back on the main thread to keep SQLite single-writer.
     results: list[AnalysedNotice] = []
-
-    for i, entry in enumerate(entries, 1):
-        # Skip duplicates
-        if is_notice_processed(entry.notice_id):
-            logger.debug("Skipping already-processed notice %s", entry.notice_id)
-            continue
-
-        logger.info(
-            "[%d/%d] Processing notice %s: %s",
-            i, len(entries), entry.notice_id, entry.title[:80],
-        )
-
-        try:
-            result = _analyse_single(entry)
-            results.append(result)
-        except Exception:
-            logger.exception("Error processing notice %s", entry.notice_id)
-            continue
-
-        # Mark as processed
-        mark_notice_processed(entry.notice_id, entry.title, entry.published)
-
-        # Rate-limit courtesy – don't hammer APIs
-        time.sleep(0.3)
+    workers = int(os.getenv("ANALYSE_CONCURRENCY", "8"))
+    with ThreadPoolExecutor(max_workers=workers) as ex:
+        future_map = {ex.submit(_analyse_single, e): e for e in fresh}
+        for fut in as_completed(future_map):
+            entry = future_map[fut]
+            try:
+                results.append(fut.result())
+            except Exception:
+                logger.exception("Error processing notice %s", entry.notice_id)
+            mark_notice_processed(entry.notice_id, entry.title, entry.published)
 
     # Filter by minimum score
     if config.MIN_OPPORTUNITY_SCORE > 0:

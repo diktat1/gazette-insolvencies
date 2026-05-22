@@ -15,6 +15,7 @@ Rate limit: 600 requests per 5 minutes.
 import json
 import logging
 import os
+import threading
 import time
 from dataclasses import dataclass, field, asdict
 from datetime import datetime, timedelta
@@ -25,6 +26,22 @@ import requests
 from src import config
 
 logger = logging.getLogger(__name__)
+
+# Thread-safe Companies House rate limiter. CH allows ~600 req / 5 min (~2/s);
+# a global min-interval throttle keeps concurrent workers under the limit so
+# parallelising the per-notice loop doesn't trigger 429 storms.
+_CH_RATE_LOCK = threading.Lock()
+_CH_LAST_CALL = [0.0]
+_CH_MIN_INTERVAL = float(os.getenv("CH_MIN_INTERVAL", "0.5"))
+_CACHE_LOCK = threading.Lock()
+
+
+def _throttle_ch() -> None:
+    with _CH_RATE_LOCK:
+        wait = _CH_MIN_INTERVAL - (time.monotonic() - _CH_LAST_CALL[0])
+        if wait > 0:
+            time.sleep(wait)
+        _CH_LAST_CALL[0] = time.monotonic()
 
 # ---------------------------------------------------------------------------
 # Cache for Companies House lookups
@@ -57,11 +74,12 @@ def _load_cache() -> None:
 
 
 def _save_cache() -> None:
-    """Save cache to disk."""
+    """Save cache to disk (lock-guarded for thread safety)."""
     try:
         os.makedirs(os.path.dirname(_CACHE_FILE), exist_ok=True)
-        with open(_CACHE_FILE, 'w') as f:
-            json.dump(_cache, f)
+        with _CACHE_LOCK:
+            with open(_CACHE_FILE, 'w') as f:
+                json.dump(_cache, f)
     except IOError as e:
         logger.warning("Could not save CH cache: %s", e)
 
@@ -170,6 +188,7 @@ def _api_get(endpoint: str, params: Optional[dict] = None, use_cache: bool = Tru
             return cached
 
     url = f"{config.COMPANIES_HOUSE_BASE_URL}{endpoint}"
+    _throttle_ch()
     try:
         resp = requests.get(
             url,
@@ -181,8 +200,8 @@ def _api_get(endpoint: str, params: Optional[dict] = None, use_cache: bool = Tru
             logger.debug("Companies House 404 for %s", endpoint)
             return None
         if resp.status_code == 429:
-            logger.warning("Companies House rate limit hit – backing off 60s")
-            time.sleep(60)
+            logger.warning("Companies House rate limit hit – backing off 10s")
+            time.sleep(10)
             return _api_get(endpoint, params, use_cache=False)
         resp.raise_for_status()
         data = resp.json()
