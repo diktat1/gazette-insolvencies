@@ -33,6 +33,12 @@ def _division(caen: str) -> str:
     return (caen or "")[:2]
 
 
+def is_asset_rich_caen(caen: str) -> bool:
+    """True if the CAEN division is one where insolvency tends to leave
+    tangible/saleable assets - used to pre-filter the daily scan cheaply."""
+    return _division(caen) in ASSET_RICH_DIVISIONS
+
+
 def _sector_bucket(caen: str) -> str:
     d = _division(caen)
     if d in {"01", "02", "03"}: return "agriculture"
