@@ -56,9 +56,10 @@ MIN_OPPORTUNITY_SCORE = int(os.getenv("MIN_OPPORTUNITY_SCORE", "0"))
 # ---------------------------------------------------------------------------
 ROMANIA_ENABLED = os.getenv("ROMANIA_ENABLED", "false").lower() in ("true", "1", "yes")
 ROMANIA_LOOKBACK_DAYS = int(os.getenv("ROMANIA_LOOKBACK_DAYS", "1"))
-# Cap on companies enriched per run (ANAF financials are 1 req/s, so this
-# bounds runtime). The first backfill run can raise this via env.
-ROMANIA_MAX_COMPANIES = int(os.getenv("ROMANIA_MAX_COMPANIES", "40"))
+# Scan ceiling for the daily feed - set high so we capture the whole day's
+# filings (the lookback-date cutoff is what actually bounds it to ~1 day).
+# No relevance cap: every asset-rich, live company in the scan is enriched.
+ROMANIA_MAX_COMPANIES = int(os.getenv("ROMANIA_MAX_COMPANIES", "2000"))
 # Auction feed (licitatii-insolventa.ro): live asset sales with practitioner
 # contact on the page. On by default when Romania is enabled.
 ROMANIA_AUCTIONS_ENABLED = os.getenv("ROMANIA_AUCTIONS_ENABLED", "true").lower() in ("true", "1", "yes")

@@ -52,7 +52,9 @@ def fetch_ro_entries(lookback_days: int = 1, max_companies: int = 40) -> list[Ro
     `lookback_days` or `max_companies` is reached (keeps enrichment bounded).
     """
     cutoff = date.today() - timedelta(days=max(1, lookback_days))
-    max_pages = min(80, max(2, (max_companies // 10) + 3))
+    # The publication-date cutoff is the real bound (stops at the lookback day);
+    # this ceiling just caps a runaway scan.
+    max_pages = min(150, max(2, (max_companies // 10) + 3))
     seen: set[str] = set()
     out: list[RoEntry] = []
 

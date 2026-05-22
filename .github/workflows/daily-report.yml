@@ -52,7 +52,8 @@ jobs:
           # Romania module (BPI via lege5.ro + ANAF enrichment) - appended to same report
           ROMANIA_ENABLED: "true"
           ROMANIA_LOOKBACK_DAYS: 1
-          ROMANIA_MAX_COMPANIES: 80
+          # No cap: scan the whole day's filings, enrich every asset-rich live one
+          ROMANIA_MAX_COMPANIES: 2000
           ROMANIA_AUCTIONS_ENABLED: "true"
           ROMANIA_AUCTIONS_MAX: 30
           # LLM triage layer (qwen via OpenRouter; module is a no-op without key)

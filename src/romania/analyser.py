@@ -54,10 +54,27 @@ def analyse_romania_notices(lookback_days: Optional[int] = None) -> list[Analyse
     if not fresh:
         return []
 
+    # Batched status for ALL of the day's entries (fast: 100 CUIs/call). Romania
+    # publishes ~600 insolvency notices/day; financial lookups are 1 req/s so we
+    # can't deep-enrich every one. Pre-filter on the (cheap) status CAEN to the
+    # asset-rich, live companies, then deep-enrich only those (capped).
+    from src.romania.scorer import is_asset_rich_caen
     status = lookup_status_batch([e.cui for e in fresh])
 
-    results: list[AnalysedNotice] = []
+    candidates, skipped = [], []
     for e in fresh:
+        s = status.get(e.cui) or {}
+        if s and not s.get("radiata") and is_asset_rich_caen(s.get("caen", "")):
+            candidates.append(e)
+        else:
+            skipped.append(e)
+    logger.info("Romania: enriching all %d asset-rich live candidates of %d entries",
+                len(candidates), len(fresh))
+    for e in skipped:
+        mark_notice_processed(e.notice_id, e.company_name, e.published or "")
+
+    results: list[AnalysedNotice] = []
+    for e in candidates:
         try:
             st = status.get(e.cui, {})
             fin = get_financials(e.cui)
