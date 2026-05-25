@@ -76,6 +76,24 @@ def run_once(
         except Exception:
             logger.exception("Romania module failed; continuing with UK report only")
 
+    # Additional country modules. Each is isolated in its own try/except so a new
+    # source can never break the UK/RO report; all default OFF via config flags.
+    def _append_country(enabled: bool, label: str, import_name: str, fn_name: str) -> None:
+        if not enabled:
+            return
+        try:
+            module = __import__(import_name, fromlist=[fn_name])
+            extra = getattr(module, fn_name)(lookback_days=days)
+            logger.info("%s: appending %d opportunities to the report", label, len(extra))
+            results.extend(extra)
+        except Exception:
+            logger.exception("%s module failed; continuing without it", label)
+
+    _append_country(config.USA_ENABLED, "USA", "src.usa", "analyse_usa_notices")
+    _append_country(config.TURKEY_ENABLED, "Turkey", "src.turkey", "analyse_turkey_notices")
+    _append_country(config.INDIA_ENABLED, "India", "src.india", "analyse_india_notices")
+    _append_country(config.MALAYSIA_ENABLED, "Malaysia", "src.malaysia", "analyse_malaysia_notices")
+
     if not results:
         logger.info("No new insolvency notices found.")
         return
