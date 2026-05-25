@@ -445,15 +445,16 @@ def _enrich_one_notice(notice, classification: dict, date: str) -> dict | None:
     """Single web-grounded enrichment call for one top notice."""
     enrich_model = os.environ.get("ENRICH_MODEL", "qwen/qwen3-235b-a22b-2507:online")
     client = _client()
+    notice_payload = json.dumps({
+        'id': classification.get('id'),
+        'compact': _compact(notice),
+        'stage1_tier': classification.get('tier'),
+        'stage1_why': classification.get('why'),
+        'category': classification.get('category'),
+    }, indent=2, ensure_ascii=False)
     user = (
         f"DATE (UTC): {date}\n\n"
-        f"NOTICE TO VERIFY:\n{json.dumps({
-            'id': classification.get('id'),
-            'compact': _compact(notice),
-            'stage1_tier': classification.get('tier'),
-            'stage1_why': classification.get('why'),
-            'category': classification.get('category'),
-        }, indent=2, ensure_ascii=False)}\n\n"
+        f"NOTICE TO VERIFY:\n{notice_payload}\n\n"
         "Run a web search to verify the company status and enrich. Output JSON only, schema in system prompt."
     )
     try:
