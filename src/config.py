@@ -66,6 +66,48 @@ ROMANIA_AUCTIONS_ENABLED = os.getenv("ROMANIA_AUCTIONS_ENABLED", "true").lower()
 ROMANIA_AUCTIONS_MAX = int(os.getenv("ROMANIA_AUCTIONS_MAX", "30"))
 
 # ---------------------------------------------------------------------------
+# USA module (CourtListener free RECAP search - Chapter 7/11)
+# ---------------------------------------------------------------------------
+USA_ENABLED = os.getenv("USA_ENABLED", "false").lower() in ("true", "1", "yes")
+USA_LOOKBACK_DAYS = int(os.getenv("USA_LOOKBACK_DAYS", "1"))
+USA_MAX_COMPANIES = int(os.getenv("USA_MAX_COMPANIES", "200"))
+USA_MAX_PAGES = int(os.getenv("USA_MAX_PAGES", "20"))
+USA_REQUEST_PAUSE = float(os.getenv("USA_REQUEST_PAUSE", "1.0"))
+# Optional CourtListener token raises the anonymous rate limit.
+COURTLISTENER_TOKEN = os.getenv("COURTLISTENER_TOKEN", "")
+# High-volume corporate-bankruptcy courts to scan (space-/comma-separated court
+# ids). Empty = scan all federal dockets and filter to Chapter 7/11 client-side.
+USA_COURTS = [c.strip() for c in os.getenv(
+    "USA_COURTS", "deb nysb txsb txnb njb cacb ilnb flsb").replace(",", " ").split() if c.strip()]
+
+# ---------------------------------------------------------------------------
+# Turkey module (ilan.gov.tr / Basın İlan Kurumu - bankruptcy-law notices)
+# ---------------------------------------------------------------------------
+TURKEY_ENABLED = os.getenv("TURKEY_ENABLED", "false").lower() in ("true", "1", "yes")
+TURKEY_LOOKBACK_DAYS = int(os.getenv("TURKEY_LOOKBACK_DAYS", "1"))
+TURKEY_MAX_COMPANIES = int(os.getenv("TURKEY_MAX_COMPANIES", "60"))
+TURKEY_MAX_PAGES = int(os.getenv("TURKEY_MAX_PAGES", "40"))
+TURKEY_REQUEST_PAUSE = float(os.getenv("TURKEY_REQUEST_PAUSE", "0.5"))
+
+# ---------------------------------------------------------------------------
+# India module (IBBI public-announcement register - CIRP / liquidation)
+# ---------------------------------------------------------------------------
+INDIA_ENABLED = os.getenv("INDIA_ENABLED", "false").lower() in ("true", "1", "yes")
+INDIA_LOOKBACK_DAYS = int(os.getenv("INDIA_LOOKBACK_DAYS", "1"))
+INDIA_MAX_COMPANIES = int(os.getenv("INDIA_MAX_COMPANIES", "200"))
+INDIA_MAX_PAGES = int(os.getenv("INDIA_MAX_PAGES", "15"))
+INDIA_REQUEST_PAUSE = float(os.getenv("INDIA_REQUEST_PAUSE", "0.5"))
+
+# ---------------------------------------------------------------------------
+# Malaysia module (MdI e-Insolvensi - credential-gated, OFF by default)
+# ---------------------------------------------------------------------------
+MALAYSIA_ENABLED = os.getenv("MALAYSIA_ENABLED", "false").lower() in ("true", "1", "yes")
+MALAYSIA_LOOKBACK_DAYS = int(os.getenv("MALAYSIA_LOOKBACK_DAYS", "1"))
+MALAYSIA_MAX_COMPANIES = int(os.getenv("MALAYSIA_MAX_COMPANIES", "100"))
+MALAYSIA_USER = os.getenv("MALAYSIA_USER", "")
+MALAYSIA_PASS = os.getenv("MALAYSIA_PASS", "")
+
+# ---------------------------------------------------------------------------
 # Database
 # ---------------------------------------------------------------------------
 DB_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)), "data", "gazette_tracker.db")
