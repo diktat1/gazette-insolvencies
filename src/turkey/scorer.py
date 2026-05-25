@@ -17,6 +17,25 @@ def _norm(s: str) -> str:
              .replace("ğ", "g").replace("ü", "u").replace("ö", "o").replace("ç", "c"))
 
 
+def classify_tr_lane(entry) -> str:
+    """Return the report lane for a Turkish notice: "auction" or "insolvency".
+
+    An icra / asset-sale notice (an explicit satis / artirma / ihale / icra, or a
+    detail call that returned an estimated/auction price) is selling asset lots
+    now, so it belongs in the auction lane. A bankruptcy-estate, concordat or
+    liquidation case is a company-level insolvency event. Uses the same Turkish
+    character folding as the scorer so the keyword match stays consistent.
+    """
+    blob = _norm(f"{entry.title} {entry.content} {entry.advertiser}")
+    dosya = _norm(getattr(entry, "dosya", ""))
+    has_price = bool(getattr(entry, "estimated_price", "") and re.search(r"\d", entry.estimated_price))
+    has_auction_date = bool(getattr(entry, "auction_date", ""))
+    is_sale = any(k in blob for k in ("satis", "artirma", "ihale", "icra")) or "icra" in dosya
+    if has_price or has_auction_date or is_sale:
+        return "auction"
+    return "insolvency"
+
+
 def score_tr(entry) -> dict:
     """Return {score, category, signals}."""
     signals: list[str] = []

@@ -13,7 +13,7 @@ from src import config
 from src.email_report import AnalysedNotice
 from src.db import is_notice_processed, mark_notice_processed
 from src.turkey.feed import fetch_tr_entries, enrich_tr_entry
-from src.turkey.scorer import score_tr
+from src.turkey.scorer import score_tr, classify_tr_lane
 
 logger = logging.getLogger(__name__)
 
@@ -46,6 +46,9 @@ def analyse_turkey_notices(lookback_days: Optional[int] = None) -> list[Analysed
 
             n = AnalysedNotice()
             n.country = "TR"
+            # icra / asset-sale notices go in the auction lane; corporate
+            # bankruptcy / concordat / liquidation stay in the insolvency lane.
+            n.lane = classify_tr_lane(e)
             n.notice_id = e.notice_id
             n.notice_url = e.url
             n.notice_type = e.title or "Bankruptcy-law notice (Turkey)"

@@ -45,6 +45,9 @@ def analyse_india_notices(lookback_days: Optional[int] = None) -> list[AnalysedN
 
             n = AnalysedNotice()
             n.country = "IN"
+            # Auction public-announcements sell asset lots now; CIRP / liquidation
+            # are company-level insolvency events. Mirror the scorer's signal.
+            n.lane = "auction" if "auction" in (e.pa_type or "").lower() else "insolvency"
             n.notice_id = e.notice_id
             n.notice_url = e.pdf_url
             n.notice_type = e.pa_type

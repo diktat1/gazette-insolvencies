@@ -28,6 +28,12 @@ class AnalysedNotice:
         # Source country: "UK" (Gazette) or "RO" (Romania/BPI)
         self.country: str = "UK"
 
+        # Report lane: "insolvency" (a named going-concern company entered
+        # bankruptcy/administration/liquidation/winding-up) or "auction"
+        # (an asset-package / auction lot sale with no single going concern).
+        # Defaults to "insolvency"; auction-sourced notices set it to "auction".
+        self.lane: str = "insolvency"
+
         # From Gazette
         self.notice_id: str = ""
         self.notice_url: str = ""
@@ -221,10 +227,16 @@ def generate_email_plain(notices: list[AnalysedNotice], date_str: str = "") -> s
     return "\n".join(lines)
 
 
-def send_email(notices: list[AnalysedNotice]) -> bool:
-    """Send the daily email report with PDF attachment. Returns True on success."""
+def send_email(notices: list[AnalysedNotice], lane: str = "insolvency") -> bool:
+    """Send the daily email report with PDF attachment. Returns True on success.
+
+    `lane` selects the email framing: "insolvency" for going-concern company
+    events (the default) and "auction" for asset-package / auction-lot sales.
+    The two lanes get distinct subjects and PDF filenames so they read as two
+    separate reports in the same run.
+    """
     if not config.SMTP_USER or not config.EMAIL_TO:
-        logger.error("SMTP_USER or EMAIL_TO not configured – cannot send email")
+        logger.error("SMTP_USER or EMAIL_TO not configured - cannot send email")
         return False
 
     date_str = datetime.utcnow().strftime("%d %B %Y")
@@ -234,7 +246,12 @@ def send_email(notices: list[AnalysedNotice]) -> bool:
     l2_count = sum(1 for n in notices if getattr(n, "llm_tier", "") == "L2")
 
     # Em dashes are banned; use commas. Surface the L1/L2 count when LLM triage ran.
-    subject = f"Gazette Insolvency Report, {date_str}"
+    if lane == "auction":
+        subject = f"Gazette Asset Auctions, {date_str}"
+        pdf_prefix = "asset-auctions-report"
+    else:
+        subject = f"Gazette Insolvency Report, {date_str}"
+        pdf_prefix = "insolvency-report"
     if l1_count or l2_count:
         subject += f", {l1_count} act, {l2_count} schedule"
     elif high_count:
@@ -271,7 +288,7 @@ def send_email(notices: list[AnalysedNotice]) -> bool:
         pdf_attachment.add_header(
             "Content-Disposition",
             "attachment",
-            filename=f"insolvency-report-{date_file}.pdf"
+            filename=f"{pdf_prefix}-{date_file}.pdf"
         )
         msg.attach(pdf_attachment)
         logger.info("PDF report attached (%d bytes)", len(pdf_bytes))
