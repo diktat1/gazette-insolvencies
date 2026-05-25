@@ -76,7 +76,7 @@ jobs:
           # Skip slow website checks in test mode
           SKIP_WEBSITE_CHECK: ${{ github.event.inputs.test_mode == 'true' && 'true' || 'false' }}
         run: |
-          python main.py --outreach
+          python main.py
 
       - name: Commit outreach database and triage audit logs
         run: |
