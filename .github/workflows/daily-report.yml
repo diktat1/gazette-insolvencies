@@ -56,6 +56,12 @@ jobs:
           ROMANIA_MAX_COMPANIES: 2000
           ROMANIA_AUCTIONS_ENABLED: "true"
           ROMANIA_AUCTIONS_MAX: 30
+          # USA (CourtListener RECAP), Turkey (ilan.gov.tr), India (IBBI) modules.
+          # Each is isolated in main.py behind try/except so it cannot break UK/RO.
+          USA_ENABLED: "true"
+          COURTLISTENER_TOKEN: ${{ secrets.COURTLISTENER_TOKEN }}
+          TURKEY_ENABLED: "true"
+          INDIA_ENABLED: "true"
           # LLM triage layer (qwen via OpenRouter; module is a no-op without key)
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
           OPENROUTER_MODEL: qwen/qwen3-235b-a22b-2507
