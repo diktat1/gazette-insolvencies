@@ -170,14 +170,25 @@ def run_once(
             send_summary_email(outreach_results)
             logger.info("Outreach summary email sent")
 
-    # Send report email
+    # Send report emails. Split into two separate emails sent in the same run:
+    # the insolvency lane (named going-concern company events) and the auction
+    # lane (asset-package / auction-lot sales). Each notice carries a .lane tag
+    # set at its source; anything untagged defaults to "insolvency".
     if send:
         if config.SMTP_USER and config.EMAIL_TO:
-            success = send_email(results)
-            if success:
-                logger.info("Email sent successfully")
-            else:
-                logger.error("Failed to send email")
+            insolvency = [r for r in results if getattr(r, "lane", "insolvency") != "auction"]
+            auctions = [r for r in results if getattr(r, "lane", "insolvency") == "auction"]
+            logger.info("Routing %d insolvency and %d auction notices into two emails",
+                        len(insolvency), len(auctions))
+            # Skip an empty lane entirely; never send an empty email.
+            for lane_name, lane_notices in (("insolvency", insolvency), ("auction", auctions)):
+                if not lane_notices:
+                    continue
+                success = send_email(lane_notices, lane=lane_name)
+                if success:
+                    logger.info("%s email sent successfully", lane_name)
+                else:
+                    logger.error("Failed to send %s email", lane_name)
         else:
             logger.warning("Email not configured (set SMTP_USER and EMAIL_TO in .env)")
 

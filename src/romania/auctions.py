@@ -143,6 +143,7 @@ def fetch_auction_opportunities(max_listings: int = 30) -> list[AnalysedNotice]:
 
             n = AnalysedNotice()
             n.country = "RO"
+            n.lane = "auction"  # UNPIR auction lots / asset-package sales
             n.notice_id = nid
             n.notice_url = url
             n.ch_url = url
