@@ -239,23 +239,24 @@ def send_email(notices: list[AnalysedNotice], lane: str = "insolvency") -> bool:
         logger.error("SMTP_USER or EMAIL_TO not configured - cannot send email")
         return False
 
-    date_str = datetime.utcnow().strftime("%d %B %Y")
+    date_str = datetime.utcnow().strftime("%d %b %Y")
     date_file = datetime.utcnow().strftime("%Y-%m-%d")
     high_count = sum(1 for n in notices if n.opportunity_category == "HIGH")
     l1_count = sum(1 for n in notices if getattr(n, "llm_tier", "") == "L1")
     l2_count = sum(1 for n in notices if getattr(n, "llm_tier", "") == "L2")
 
-    # Em dashes are banned; use commas. Surface the L1/L2 count when LLM triage ran.
+    # Unified digest subject convention: "<Feed> · DD Mon YYYY · <summary>".
+    # Em dashes are banned; the separator is a middle dot (·), not an em dash.
     if lane == "auction":
-        subject = f"Gazette Asset Auctions, {date_str}"
+        subject = f"Gazette Auctions · {date_str}"
         pdf_prefix = "asset-auctions-report"
     else:
-        subject = f"Gazette Insolvency Report, {date_str}"
+        subject = f"Gazette Insolvency · {date_str}"
         pdf_prefix = "insolvency-report"
     if l1_count or l2_count:
-        subject += f", {l1_count} act, {l2_count} schedule"
+        subject += f" · {l1_count} act, {l2_count} schedule"
     elif high_count:
-        subject += f", {high_count} high-potential opportunities"
+        subject += f" · {high_count} high-potential opportunities"
 
     # Use mixed multipart to support both alternative content and attachments
     msg = MIMEMultipart("mixed")
