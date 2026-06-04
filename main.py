@@ -98,6 +98,16 @@ def run_once(
         logger.info("No new insolvency notices found.")
         return
 
+    # LLM triage layer: run once over the combined UK + RO + US + TR + IN + MY
+    # set so the L1/L2/L3 tiers flow through to the email subject and PDF for
+    # every source. No-op without OPENROUTER_API_KEY; any failure falls back to
+    # heuristic-only ranking so the daily report still goes out.
+    try:
+        from src.triage_llm import apply_llm_triage
+        results = apply_llm_triage(results)
+    except Exception:
+        logger.exception("LLM triage failed; using heuristic-only ranking")
+
     logger.info("Found %d notices to report", len(results))
 
     # Print summary to stdout

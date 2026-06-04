@@ -610,7 +610,7 @@ def apply_llm_triage(notices: list, date: str | None = None) -> list:
     if not notices:
         return notices
     if not os.environ.get("OPENROUTER_API_KEY"):
-        logger.warning("[triage] OPENROUTER_API_KEY not set — skipping LLM triage")
+        logger.warning("[triage] OPENROUTER_API_KEY not set, skipping LLM triage")
         return notices
 
     date = date or datetime.now(timezone.utc).strftime("%Y-%m-%d")
