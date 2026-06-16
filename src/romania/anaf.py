@@ -20,6 +20,10 @@ TVA_URL = "https://webservicesp.anaf.ro/api/PlatitorTvaRest/v9/tva"
 BILANT_URL = "https://webservicesp.anaf.ro/bilant"
 HEADERS = {"Content-Type": "application/json", "User-Agent": "insolvency-pipeline/1.0"}
 TIMEOUT = 25
+# Financials are the high-volume per-candidate call. A short timeout caps the
+# tail cost of a slow/unresponsive ANAF response: a dead CUI tries 2 years, so
+# its worst case is 2 * FIN_TIMEOUT rather than 3 * 25s.
+FIN_TIMEOUT = 8
 
 
 def _norm(s: str) -> str:
@@ -64,10 +68,10 @@ def get_financials(cui: str, years: list[int] | None = None) -> dict:
     """Latest available annual financials for a CUI. Returns {} if none."""
     if years is None:
         y = date.today().year
-        years = [y - 1, y - 2, y - 3]
+        years = [y - 1, y - 2]
     for yr in years:
         try:
-            r = requests.get(BILANT_URL, params={"an": yr, "cui": cui}, headers={"User-Agent": HEADERS["User-Agent"]}, timeout=TIMEOUT)
+            r = requests.get(BILANT_URL, params={"an": yr, "cui": cui}, headers={"User-Agent": HEADERS["User-Agent"]}, timeout=FIN_TIMEOUT)
             if r.status_code != 200:
                 continue
             data = r.json()

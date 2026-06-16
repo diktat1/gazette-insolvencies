@@ -58,8 +58,16 @@ ROMANIA_ENABLED = os.getenv("ROMANIA_ENABLED", "false").lower() in ("true", "1",
 ROMANIA_LOOKBACK_DAYS = int(os.getenv("ROMANIA_LOOKBACK_DAYS", "1"))
 # Scan ceiling for the daily feed - set high so we capture the whole day's
 # filings (the lookback-date cutoff is what actually bounds it to ~1 day).
-# No relevance cap: every asset-rich, live company in the scan is enriched.
 ROMANIA_MAX_COMPANIES = int(os.getenv("ROMANIA_MAX_COMPANIES", "2000"))
+# Deep-enrichment guards. ANAF financials are rate-limited to ~1 req/s, so on a
+# high-volume day (1000+ asset-rich candidates) a naive serial enrich runs for
+# hours and the GitHub job hits its 6h cap. Two hard bounds keep the run finite:
+#   - MAX_ENRICH caps how many candidates get the deep ANAF + ECRIS enrichment.
+#   - TIME_BUDGET_S stops enrichment after N seconds and emits what we have.
+# Whichever bites first wins; any candidate not enriched is logged and marked
+# processed so it does not pile up into an ever-growing backlog.
+ROMANIA_MAX_ENRICH = int(os.getenv("ROMANIA_MAX_ENRICH", "400"))
+ROMANIA_TIME_BUDGET_S = int(os.getenv("ROMANIA_TIME_BUDGET_S", "2400"))
 # Auction feed (licitatii-insolventa.ro): live asset sales with practitioner
 # contact on the page. On by default when Romania is enabled.
 ROMANIA_AUCTIONS_ENABLED = os.getenv("ROMANIA_AUCTIONS_ENABLED", "true").lower() in ("true", "1", "yes")
@@ -88,15 +96,6 @@ TURKEY_LOOKBACK_DAYS = int(os.getenv("TURKEY_LOOKBACK_DAYS", "1"))
 TURKEY_MAX_COMPANIES = int(os.getenv("TURKEY_MAX_COMPANIES", "60"))
 TURKEY_MAX_PAGES = int(os.getenv("TURKEY_MAX_PAGES", "40"))
 TURKEY_REQUEST_PAUSE = float(os.getenv("TURKEY_REQUEST_PAUSE", "0.5"))
-
-# ---------------------------------------------------------------------------
-# India module (IBBI public-announcement register - CIRP / liquidation)
-# ---------------------------------------------------------------------------
-INDIA_ENABLED = os.getenv("INDIA_ENABLED", "false").lower() in ("true", "1", "yes")
-INDIA_LOOKBACK_DAYS = int(os.getenv("INDIA_LOOKBACK_DAYS", "1"))
-INDIA_MAX_COMPANIES = int(os.getenv("INDIA_MAX_COMPANIES", "200"))
-INDIA_MAX_PAGES = int(os.getenv("INDIA_MAX_PAGES", "15"))
-INDIA_REQUEST_PAUSE = float(os.getenv("INDIA_REQUEST_PAUSE", "0.5"))
 
 # ---------------------------------------------------------------------------
 # Malaysia module (MdI e-Insolvensi - credential-gated, OFF by default)

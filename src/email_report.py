@@ -6,14 +6,12 @@ import logging
 import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
-from email.mime.application import MIMEApplication
 from datetime import datetime
 from typing import Optional
 
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 
 from src import config
-from src.pdf_report import generate_pdf_report
 
 logger = logging.getLogger(__name__)
 
@@ -228,19 +226,17 @@ def generate_email_plain(notices: list[AnalysedNotice], date_str: str = "") -> s
 
 
 def send_email(notices: list[AnalysedNotice], lane: str = "insolvency") -> bool:
-    """Send the daily email report with PDF attachment. Returns True on success.
+    """Send the daily email report (HTML + plain-text). Returns True on success.
 
-    `lane` selects the email framing: "insolvency" for going-concern company
-    events (the default) and "auction" for asset-package / auction-lot sales.
-    The two lanes get distinct subjects and PDF filenames so they read as two
-    separate reports in the same run.
+    All report content is rendered inline in the HTML body; there is no PDF
+    attachment. `lane` selects the subject framing; only the "insolvency" lane
+    is sent in the current pipeline.
     """
     if not config.SMTP_USER or not config.EMAIL_TO:
         logger.error("SMTP_USER or EMAIL_TO not configured - cannot send email")
         return False
 
     date_str = datetime.utcnow().strftime("%d %b %Y")
-    date_file = datetime.utcnow().strftime("%Y-%m-%d")
     high_count = sum(1 for n in notices if n.opportunity_category == "HIGH")
     l1_count = sum(1 for n in notices if getattr(n, "llm_tier", "") == "L1")
     l2_count = sum(1 for n in notices if getattr(n, "llm_tier", "") == "L2")
@@ -249,52 +245,31 @@ def send_email(notices: list[AnalysedNotice], lane: str = "insolvency") -> bool:
     # Em dashes are banned; the separator is a middle dot (·), not an em dash.
     if lane == "auction":
         subject = f"Gazette Auctions · {date_str}"
-        pdf_prefix = "asset-auctions-report"
     else:
         subject = f"Gazette Insolvency · {date_str}"
-        pdf_prefix = "insolvency-report"
     if l1_count or l2_count:
         subject += f" · {l1_count} act, {l2_count} schedule"
     elif high_count:
         subject += f" · {high_count} high-potential opportunities"
 
-    # Use mixed multipart to support both alternative content and attachments
-    msg = MIMEMultipart("mixed")
+    # multipart/alternative: plain-text fallback + HTML body (all content inline).
+    msg = MIMEMultipart("alternative")
     msg["Subject"] = subject
     msg["From"] = config.EMAIL_FROM or config.SMTP_USER
     msg["To"] = config.EMAIL_TO
     if config.EMAIL_CC:
         msg["Cc"] = ", ".join(config.EMAIL_CC)
 
-    # Create alternative part for plain text and HTML
-    msg_alternative = MIMEMultipart("alternative")
-
     # Plain text part
     plain = generate_email_plain(notices, date_str)
-    msg_alternative.attach(MIMEText(plain, "plain", "utf-8"))
+    msg.attach(MIMEText(plain, "plain", "utf-8"))
 
     # HTML part
     try:
         html = generate_email_html(notices, date_str)
-        msg_alternative.attach(MIMEText(html, "html", "utf-8"))
+        msg.attach(MIMEText(html, "html", "utf-8"))
     except Exception as exc:
         logger.warning("Could not render HTML template, sending plain text only: %s", exc)
-
-    msg.attach(msg_alternative)
-
-    # Generate and attach PDF report
-    try:
-        pdf_bytes = generate_pdf_report(notices, date_str)
-        pdf_attachment = MIMEApplication(pdf_bytes, _subtype="pdf")
-        pdf_attachment.add_header(
-            "Content-Disposition",
-            "attachment",
-            filename=f"{pdf_prefix}-{date_file}.pdf"
-        )
-        msg.attach(pdf_attachment)
-        logger.info("PDF report attached (%d bytes)", len(pdf_bytes))
-    except Exception as exc:
-        logger.warning("Could not generate PDF attachment: %s", exc)
 
     # All recipients
     recipients = [config.EMAIL_TO] + config.EMAIL_CC

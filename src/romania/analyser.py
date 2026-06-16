@@ -5,6 +5,7 @@ AnalysedNotice, so RO opportunities drop straight into the daily UK email.
 """
 
 import logging
+import time
 from dataclasses import dataclass
 from typing import Optional
 from urllib.parse import quote
@@ -68,13 +69,40 @@ def analyse_romania_notices(lookback_days: Optional[int] = None) -> list[Analyse
             candidates.append(e)
         else:
             skipped.append(e)
-    logger.info("Romania: enriching all %d asset-rich live candidates of %d entries",
-                len(candidates), len(fresh))
     for e in skipped:
         mark_notice_processed(e.notice_id, e.company_name, e.published or "")
 
+    # Hard cap on deep-enriched candidates. ANAF financials are ~1 req/s, so an
+    # uncapped serial enrich of 1000+ candidates blows past the GitHub 6h job cap
+    # (see ROMANIA_MAX_ENRICH / ROMANIA_TIME_BUDGET_S in config). Candidates over
+    # the cap are dropped (marked processed) rather than carried over, so they
+    # never accumulate into an unbounded backlog.
+    max_enrich = config.ROMANIA_MAX_ENRICH
+    if max_enrich and len(candidates) > max_enrich:
+        overflow = candidates[max_enrich:]
+        candidates = candidates[:max_enrich]
+        logger.warning("Romania: capping enrichment at %d candidates; dropping %d over the cap",
+                       max_enrich, len(overflow))
+        for e in overflow:
+            mark_notice_processed(e.notice_id, e.company_name, e.published or "")
+
+    logger.info("Romania: enriching %d asset-rich live candidates of %d entries (budget %ds)",
+                len(candidates), len(fresh), config.ROMANIA_TIME_BUDGET_S)
+
     results: list[AnalysedNotice] = []
-    for e in candidates:
+    budget_s = config.ROMANIA_TIME_BUDGET_S
+    start = time.monotonic()
+    for idx, e in enumerate(candidates):
+        # Wall-clock budget: stop enriching once the budget is spent and emit what
+        # we have. Remaining candidates are marked processed so the run finishes
+        # and they do not pile up. This is the guarantee that the job never hangs.
+        if budget_s and time.monotonic() - start > budget_s:
+            remaining = candidates[idx:]
+            logger.warning("Romania: time budget (%ds) reached after %d candidates; "
+                           "dropping %d un-enriched", budget_s, idx, len(remaining))
+            for r in remaining:
+                mark_notice_processed(r.notice_id, r.company_name, r.published or "")
+            break
         try:
             st = status.get(e.cui, {})
             fin = get_financials(e.cui)

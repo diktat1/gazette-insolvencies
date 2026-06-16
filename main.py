@@ -91,15 +91,14 @@ def run_once(
 
     _append_country(config.USA_ENABLED, "USA", "src.usa", "analyse_usa_notices")
     _append_country(config.TURKEY_ENABLED, "Turkey", "src.turkey", "analyse_turkey_notices")
-    _append_country(config.INDIA_ENABLED, "India", "src.india", "analyse_india_notices")
     _append_country(config.MALAYSIA_ENABLED, "Malaysia", "src.malaysia", "analyse_malaysia_notices")
 
     if not results:
         logger.info("No new insolvency notices found.")
         return
 
-    # LLM triage layer: run once over the combined UK + RO + US + TR + IN + MY
-    # set so the L1/L2/L3 tiers flow through to the email subject and PDF for
+    # LLM triage layer: run once over the combined UK + RO + US + TR + MY
+    # set so the L1/L2/L3 tiers flow through to the email subject for
     # every source. No-op without OPENROUTER_API_KEY; any failure falls back to
     # heuristic-only ranking so the daily report still goes out.
     try:
@@ -180,25 +179,22 @@ def run_once(
             send_summary_email(outreach_results)
             logger.info("Outreach summary email sent")
 
-    # Send report emails. Split into two separate emails sent in the same run:
-    # the insolvency lane (named going-concern company events) and the auction
-    # lane (asset-package / auction-lot sales). Each notice carries a .lane tag
-    # set at its source; anything untagged defaults to "insolvency".
+    # Send the report email. The auction lane has been retired: only the
+    # insolvency lane (named going-concern company events) is emailed now.
+    # Auction-tagged notices (RO auction lots, TR icra, IN auctions) are dropped
+    # from the report rather than sent as a separate auction email.
     if send:
         if config.SMTP_USER and config.EMAIL_TO:
             insolvency = [r for r in results if getattr(r, "lane", "insolvency") != "auction"]
-            auctions = [r for r in results if getattr(r, "lane", "insolvency") == "auction"]
-            logger.info("Routing %d insolvency and %d auction notices into two emails",
-                        len(insolvency), len(auctions))
-            # Skip an empty lane entirely; never send an empty email.
-            for lane_name, lane_notices in (("insolvency", insolvency), ("auction", auctions)):
-                if not lane_notices:
-                    continue
-                success = send_email(lane_notices, lane=lane_name)
+            dropped = len(results) - len(insolvency)
+            logger.info("Sending %d insolvency notices (%d auction-lane notices dropped)",
+                        len(insolvency), dropped)
+            if insolvency:
+                success = send_email(insolvency, lane="insolvency")
                 if success:
-                    logger.info("%s email sent successfully", lane_name)
+                    logger.info("insolvency email sent successfully")
                 else:
-                    logger.error("Failed to send %s email", lane_name)
+                    logger.error("Failed to send insolvency email")
         else:
             logger.warning("Email not configured (set SMTP_USER and EMAIL_TO in .env)")
 

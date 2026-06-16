@@ -1,14 +1,14 @@
 #!/usr/bin/env python3
 """
-Test the two-email lane split (insolvency vs auction) in main.run_once.
+Test the email lane routing in main.run_once.
 
-Builds a handful of AnalysedNotice objects with mixed .lane values, stubs the
-analysers and the SMTP-backed send_email (so no network / SMTP is touched), runs
-run_once, and asserts:
-  - notices are partitioned correctly by .lane
-  - send_email is invoked exactly twice (once per non-empty lane)
-  - each call gets only the notices for its lane, with the right subject lane
-  - an empty lane is skipped (never sends an empty email)
+The auction lane has been retired: only the insolvency lane is emailed, and
+auction-tagged notices are dropped. Builds a handful of AnalysedNotice objects
+with mixed .lane values, stubs the analysers and the SMTP-backed send_email (so
+no network / SMTP is touched), runs run_once, and asserts:
+  - send_email is invoked exactly once, for the insolvency lane
+  - only non-auction notices reach the email
+  - auction-tagged notices never appear in any send
 
 Run:
     python test_lane_split.py
@@ -42,7 +42,6 @@ def _install_stubs(monkeypatch_results, send_calls):
     config.ROMANIA_ENABLED = False
     config.USA_ENABLED = False
     config.TURKEY_ENABLED = False
-    config.INDIA_ENABLED = False
     config.MALAYSIA_ENABLED = False
 
     main.analyse_notices = lambda lookback_days=None: list(monkeypatch_results)
@@ -55,12 +54,12 @@ def _install_stubs(monkeypatch_results, send_calls):
     main.send_email = fake_send
 
 
-def test_mixed_lanes_sends_two_emails():
+def test_auction_notices_dropped():
     results = [
         _notice("UK Corp Ltd", "insolvency"),
         _notice("RO BPI Co", "insolvency"),
         _notice("RO Auction Lot", "auction"),
-        _notice("IN Liquidation Auction", "auction"),
+        _notice("TR Icra Sale", "auction"),
         _notice("US Chapter 11 Co", "insolvency"),
     ]
     send_calls = []
@@ -68,33 +67,29 @@ def test_mixed_lanes_sends_two_emails():
 
     main.run_once(send=True)
 
-    assert len(send_calls) == 2, f"expected 2 emails, got {len(send_calls)}"
-    by_lane = {lane: names for lane, names in send_calls}
-    assert set(by_lane) == {"insolvency", "auction"}, by_lane
-    assert sorted(by_lane["insolvency"]) == sorted(
+    assert len(send_calls) == 1, f"expected 1 email, got {len(send_calls)}"
+    lane, names = send_calls[0]
+    assert lane == "insolvency", lane
+    assert sorted(names) == sorted(
         ["UK Corp Ltd", "RO BPI Co", "US Chapter 11 Co"]
-    ), by_lane["insolvency"]
-    assert sorted(by_lane["auction"]) == sorted(
-        ["RO Auction Lot", "IN Liquidation Auction"]
-    ), by_lane["auction"]
-    # No notice leaked across lanes.
-    assert not (set(by_lane["insolvency"]) & set(by_lane["auction"]))
-    print("PASS: mixed lanes -> two emails, correctly partitioned")
+    ), names
+    # Auction-tagged notices must never reach a send.
+    assert "RO Auction Lot" not in names and "TR Icra Sale" not in names
+    print("PASS: auction notices dropped, only insolvency lane emailed")
 
 
-def test_empty_auction_lane_skipped():
+def test_no_email_when_only_auctions():
     results = [
-        _notice("UK Corp Ltd", "insolvency"),
-        _notice("RO BPI Co", "insolvency"),
+        _notice("RO Auction Lot", "auction"),
+        _notice("TR Icra Sale", "auction"),
     ]
     send_calls = []
     _install_stubs(results, send_calls)
 
     main.run_once(send=True)
 
-    assert len(send_calls) == 1, f"expected 1 email, got {len(send_calls)}"
-    assert send_calls[0][0] == "insolvency"
-    print("PASS: empty auction lane skipped (one email only)")
+    assert len(send_calls) == 0, f"expected 0 emails, got {len(send_calls)}"
+    print("PASS: all-auction result sends no email")
 
 
 def test_default_lane_is_insolvency():
@@ -107,6 +102,6 @@ if __name__ == "__main__":
     import logging
     logging.disable(logging.CRITICAL)
     test_default_lane_is_insolvency()
-    test_mixed_lanes_sends_two_emails()
-    test_empty_auction_lane_skipped()
-    print("\nAll lane-split tests passed.")
+    test_auction_notices_dropped()
+    test_no_email_when_only_auctions()
+    print("\nAll lane-routing tests passed.")
