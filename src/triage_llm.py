@@ -54,6 +54,53 @@ logger = logging.getLogger(__name__)
 DEFAULT_MODEL = "openrouter/auto"
 DEFAULT_BASE_URL = "https://openrouter.ai/api/v1"
 
+# Constrain the Auto Router to open-weight model namespaces only, so it never
+# routes to expensive proprietary models (Claude/GPT/Gemini/Grok). These are
+# the namespaces on OpenRouter that contain *only* open-weight models - we omit
+# google/*, x-ai/*, cohere/* because those mix proprietary models (Gemini,
+# Grok, Command) into the same namespace. Override via OPENROUTER_ALLOWED_MODELS
+# (comma-separated wildcard patterns). https://openrouter.ai/docs (auto-router)
+DEFAULT_ALLOWED_MODELS = [
+    "qwen/*",
+    "deepseek/*",
+    "meta-llama/*",
+    "mistralai/*",
+    "nvidia/*",
+    "z-ai/*",
+    "moonshotai/*",
+    "nousresearch/*",
+    "allenai/*",
+    "microsoft/*",
+]
+# cost_quality_tradeoff: 0 = best capability, 10 = cheapest wins (default 7).
+# We lean toward cost (8) since the pool is already all cheap open models.
+DEFAULT_COST_QUALITY = 8
+
+
+def _allowed_models() -> list[str]:
+    raw = os.environ.get("OPENROUTER_ALLOWED_MODELS", "")
+    if raw.strip():
+        return [m.strip() for m in raw.split(",") if m.strip()]
+    return DEFAULT_ALLOWED_MODELS
+
+
+def _cost_quality() -> int:
+    return int(os.environ.get("OPENROUTER_COST_QUALITY", str(DEFAULT_COST_QUALITY)))
+
+
+def _auto_router_extra_body() -> dict:
+    """extra_body for an Auto Router call: provider routing + the open-weight
+    whitelist. The auto-router plugin only takes effect when the model is
+    openrouter/auto; for a pinned model it is harmless/ignored but we omit it."""
+    body: dict = {"provider": {"sort": "throughput"}}
+    if _model() == "openrouter/auto":
+        body["plugins"] = [{
+            "id": "auto-router",
+            "allowed_models": _allowed_models(),
+            "cost_quality_tradeoff": _cost_quality(),
+        }]
+    return body
+
 TIER_ORDER = {"drop": 0, "unknown": 0, "watch": 1, "L3": 2, "L2": 3, "L1": 4}
 TIER_BASE_SCORE = {"L1": 80, "L2": 60, "L3": 40, "watch": 20, "drop": 0, "unknown": 25}
 
@@ -220,7 +267,7 @@ def _batch_pass(items: list[dict], date: str) -> dict:
             "HTTP-Referer": "https://github.com/diktat1/gazette-insolvencies",
             "X-Title": "gazette-insolvencies (stage1)",
         },
-        extra_body={"provider": {"sort": "throughput"}},
+        extra_body=_auto_router_extra_body(),
     )
     content = resp.choices[0].message.content or ""
     parsed = _parse_json(content)
@@ -545,7 +592,7 @@ def stage3_writeups(top: list[dict], notices_by_id: dict, date: str, enrichments
             "HTTP-Referer": "https://github.com/diktat1/gazette-insolvencies",
             "X-Title": "gazette-insolvencies (stage3)",
         },
-        extra_body={"provider": {"sort": "throughput"}},
+        extra_body=_auto_router_extra_body(),
     )
     parsed = _parse_json(resp.choices[0].message.content or "")
     by_id: dict[str, dict] = {}
