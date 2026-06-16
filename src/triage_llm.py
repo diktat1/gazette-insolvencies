@@ -54,27 +54,30 @@ logger = logging.getLogger(__name__)
 DEFAULT_MODEL = "openrouter/auto"
 DEFAULT_BASE_URL = "https://openrouter.ai/api/v1"
 
-# Constrain the Auto Router to open-weight model namespaces only, so it never
-# routes to expensive proprietary models (Claude/GPT/Gemini/Grok). These are
-# the namespaces on OpenRouter that contain *only* open-weight models - we omit
-# google/*, x-ai/*, cohere/* because those mix proprietary models (Gemini,
-# Grok, Command) into the same namespace. Override via OPENROUTER_ALLOWED_MODELS
-# (comma-separated wildcard patterns). https://openrouter.ai/docs (auto-router)
+# Constrain the Auto Router to an explicit, curated pool of CHEAP open-weight
+# models. Namespace wildcards (qwen/*, mistralai/*, ...) are NOT safe: those
+# namespaces also contain expensive open-weight models ($6-7.5/M out, e.g.
+# Mistral Large, Qwen3-Max, GLM-5-Turbo), and the unconstrained Auto Router
+# previously picked GPT-5.5 and burned ~$2 in a single run. So we pin an exact
+# list instead - every model below is a non-reasoning instruct model priced
+# <= ~$0.25/M in and <= $0.45/M out (verified on OpenRouter 2026-06-16). Refresh
+# periodically (the cheap leaders change). Override via OPENROUTER_ALLOWED_MODELS
+# (comma-separated). https://openrouter.ai/docs (auto-router)
 DEFAULT_ALLOWED_MODELS = [
-    "qwen/*",
-    "deepseek/*",
-    "meta-llama/*",
-    "mistralai/*",
-    "nvidia/*",
-    "z-ai/*",
-    "moonshotai/*",
-    "nousresearch/*",
-    "allenai/*",
-    "microsoft/*",
+    "qwen/qwen3-235b-a22b-2507",            # $0.09/$0.10  - proven, flagship-cheap
+    "qwen/qwen3-32b",                       # $0.08/$0.28
+    "qwen/qwen3-30b-a3b-instruct-2507",     # $0.05/$0.19
+    "deepseek/deepseek-v3.2",               # $0.23/$0.34  - strong general model
+    "meta-llama/llama-3.3-70b-instruct",    # $0.10/$0.32
+    "mistralai/mistral-small-3.2-24b-instruct",  # $0.08/$0.20
+    "nvidia/nemotron-3-super-120b-a12b",    # $0.09/$0.45
+    "z-ai/glm-4.7-flash",                   # $0.06/$0.40
+    "microsoft/phi-4",                      # $0.07/$0.14
 ]
 # cost_quality_tradeoff: 0 = best capability, 10 = cheapest wins (default 7).
-# We lean toward cost (8) since the pool is already all cheap open models.
-DEFAULT_COST_QUALITY = 8
+# The pool is already all-cheap, so a balanced value (5) lets it pick a capable
+# model (e.g. the 235B or Llama-70B) without any meaningful cost difference.
+DEFAULT_COST_QUALITY = 5
 
 
 def _allowed_models() -> list[str]:
