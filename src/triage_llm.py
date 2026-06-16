@@ -21,7 +21,7 @@ Per-notice decisions are written to data/triage-decisions-<date>.csv for audit.
 
 Env knobs:
     OPENROUTER_API_KEY    required (if missing the module is a no-op)
-    OPENROUTER_MODEL      default qwen/qwen3-235b-a22b-2507
+    OPENROUTER_MODEL      default openrouter/auto (OpenRouter Auto Router)
     BATCH_SIZE            default 15
     LLM_CONCURRENCY       default 8
     RETRY_LIMIT           default 3
@@ -49,7 +49,9 @@ from typing import Any
 
 logger = logging.getLogger(__name__)
 
-DEFAULT_MODEL = "qwen/qwen3-235b-a22b-2507"
+# OpenRouter Auto Router: picks a model from a curated high-quality pool per
+# prompt, balancing cost and quality. https://openrouter.ai/docs (auto-router)
+DEFAULT_MODEL = "openrouter/auto"
 DEFAULT_BASE_URL = "https://openrouter.ai/api/v1"
 
 TIER_ORDER = {"drop": 0, "unknown": 0, "watch": 1, "L3": 2, "L2": 3, "L1": 4}
