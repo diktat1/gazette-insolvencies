@@ -8,6 +8,8 @@ ANAF asks for max 1 request/second; we throttle accordingly.
 """
 
 import logging
+import os
+import threading
 import time
 import unicodedata
 from datetime import date
@@ -24,6 +26,26 @@ TIMEOUT = 25
 # tail cost of a slow/unresponsive ANAF response: a dead CUI tries 2 years, so
 # its worst case is 2 * FIN_TIMEOUT rather than 3 * 25s.
 FIN_TIMEOUT = 8
+
+# Global financials rate limiter. Enrichment now runs across a thread pool, so
+# the old per-call sleep no longer bounds the request rate. ANAF asks for max
+# ~1 req/s; this gate enforces a minimum interval between financials requests
+# across ALL worker threads. Tunable via ANAF_FIN_MIN_INTERVAL.
+FIN_MIN_INTERVAL = float(os.getenv("ANAF_FIN_MIN_INTERVAL", "1.0"))
+_fin_lock = threading.Lock()
+_fin_next_at = [0.0]
+
+
+def _fin_throttle() -> None:
+    """Block until it is this thread's turn to issue a financials request,
+    enforcing FIN_MIN_INTERVAL globally across threads."""
+    with _fin_lock:
+        now = time.monotonic()
+        wait = _fin_next_at[0] - now
+        if wait > 0:
+            time.sleep(wait)
+            now = time.monotonic()
+        _fin_next_at[0] = now + FIN_MIN_INTERVAL
 
 
 def _norm(s: str) -> str:
@@ -71,6 +93,7 @@ def get_financials(cui: str, years: list[int] | None = None) -> dict:
         years = [y - 1, y - 2]
     for yr in years:
         try:
+            _fin_throttle()
             r = requests.get(BILANT_URL, params={"an": yr, "cui": cui}, headers={"User-Agent": HEADERS["User-Agent"]}, timeout=FIN_TIMEOUT)
             if r.status_code != 200:
                 continue
@@ -103,6 +126,5 @@ def get_financials(cui: str, years: list[int] | None = None) -> dict:
                 circ = val
         if imob or circ:
             fin["total_assets"] = imob + circ
-        time.sleep(1.1)
         return fin
     return {}

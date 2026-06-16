@@ -68,6 +68,10 @@ ROMANIA_MAX_COMPANIES = int(os.getenv("ROMANIA_MAX_COMPANIES", "2000"))
 # processed so it does not pile up into an ever-growing backlog.
 ROMANIA_MAX_ENRICH = int(os.getenv("ROMANIA_MAX_ENRICH", "400"))
 ROMANIA_TIME_BUDGET_S = int(os.getenv("ROMANIA_TIME_BUDGET_S", "2400"))
+# Enrichment runs in a thread pool: the per-candidate work is latency-bound
+# (ANAF financials + a slow ECRIS lookup), so concurrency lets those overlap.
+# ANAF financials stay globally throttled to ~1 req/s inside the client.
+ROMANIA_CONCURRENCY = int(os.getenv("ROMANIA_CONCURRENCY", "6"))
 # Auction feed (licitatii-insolventa.ro): live asset sales with practitioner
 # contact on the page. On by default when Romania is enabled.
 ROMANIA_AUCTIONS_ENABLED = os.getenv("ROMANIA_AUCTIONS_ENABLED", "true").lower() in ("true", "1", "yes")
