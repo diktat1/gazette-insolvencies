@@ -1,0 +1,214 @@
+id,tier,category,final,tier_base,heuristic_score,adjustments,phantom,charges,outstanding_charges,website,accounts_dormant,co_ip_firm,same_ip_firm_today,sic_cluster_size,company,ch_status,ch_accounts,notice_type,why
+TR-ILN02489966,L3,creditor_bid_target,55.0,40,60.0,5,0,0,0,0,0,5,2,0,🇹🇷 Konkordato mühlet kararına ilişkin ilanen tebligat,Bankruptcy proceedings,,Konkordato mühlet kararına ilişkin ilanen tebligat,Bankruptcy estate with potential for creditor bid
+TR-ILN02489081,L3,creditor_bid_target,55.0,40,60.0,5,0,0,0,0,0,5,5,0,🇹🇷 Konkordato davasının ilanen tebliği,Bankruptcy proceedings,,Konkordato davasının ilanen tebliği,Bankruptcy estate with potential for creditor bid
+US-flsb-26-17896,L3,going_concern_sale,52.5,40,65.0,0,0,0,0,0,0,0,0,0,"🇺🇸 Jackson Avenue Properties, Inc.",In bankruptcy,,Chapter 11 bankruptcy (reorganisation),Chapter 11 bankruptcy with potential for 363 asset sale as a going concern
+US-ilnb-26-10122,L3,going_concern_sale,52.5,40,65.0,0,0,0,0,0,0,0,0,0,"🇺🇸 6363 West 73rd Street, LLC",In bankruptcy,,Chapter 11 bankruptcy (reorganisation),Chapter 11 bankruptcy with potential for 363 asset sale as a going concern
+US-deb-26-10981,L3,going_concern_sale,52.5,40,65.0,0,0,0,0,0,0,0,0,0,"🇺🇸 GVO Urban, LLC",In bankruptcy,,Chapter 11 bankruptcy (reorganisation),Chapter 11 bankruptcy with potential for 363 asset sale as a going concern
+US-deb-26-10980,L3,going_concern_sale,52.5,40,65.0,0,0,0,0,0,0,0,0,0,"🇺🇸 GVO Still Waters, LLC",In bankruptcy,,Chapter 11 bankruptcy (reorganisation),Chapter 11 bankruptcy with potential for 363 asset sale as a going concern
+US-cacb-2:26-bk-16017,L3,going_concern_sale,52.5,40,65.0,0,0,0,0,0,0,0,0,0,"🇺🇸 Upcycle, LLC",In bankruptcy,,Chapter 11 bankruptcy (reorganisation),Chapter 11 bankruptcy with potential for 363 asset sale as a going concern
+US-cacb-8:26-bk-11858,L3,going_concern_sale,52.5,40,65.0,0,0,0,0,0,0,0,0,0,"🇺🇸 Morning Lavender, LLC",In bankruptcy,,Chapter 11 bankruptcy (reorganisation),Chapter 11 bankruptcy with potential for 363 asset sale as a going concern
+US-deb-26-10978,L3,going_concern_sale,52.5,40,65.0,0,0,0,0,0,0,0,0,0,🇺🇸 GVO Topco LLC,In bankruptcy,,Chapter 11 bankruptcy (reorganisation),Chapter 11 bankruptcy with potential for 363 asset sale as a going concern
+US-deb-26-10979,L3,going_concern_sale,52.5,40,65.0,0,0,0,0,0,0,0,0,0,"🇺🇸 GVO Sweetgrass, LLC",In bankruptcy,,Chapter 11 bankruptcy (reorganisation),Chapter 11 bankruptcy with potential for 363 asset sale as a going concern
+US-deb-26-10977,L3,going_concern_sale,52.5,40,65.0,0,0,0,0,0,0,0,0,0,🇺🇸 GVO Holdings Group LLC,In bankruptcy,,Chapter 11 bankruptcy (reorganisation),Chapter 11 bankruptcy with potential for 363 asset sale as a going concern
+US-deb-26-10976,L3,going_concern_sale,52.5,40,65.0,0,0,0,0,0,0,0,0,0,🇺🇸 GVO Partners LLC,In bankruptcy,,Chapter 11 bankruptcy (reorganisation),Chapter 11 bankruptcy with potential for 363 asset sale as a going concern
+TR-ILN02490028,L3,creditor_bid_target,52.5,40,55.0,5,0,0,0,0,0,5,4,0,🇹🇷 Enerba Enerji San. Ve Tic. A.Ş,Bankruptcy proceedings,,Sıra cetvelinin ve ikinci alacaklılar toplantısının ilanen tebliği,Bankruptcy estate with potential for creditor bid
+TR-ILN02490024,L3,creditor_bid_target,52.5,40,55.0,5,0,0,0,0,0,5,4,0,🇹🇷 3 Eksen Enerji San. Ve Tic. A.Ş,Bankruptcy proceedings,,Sıra cetveli ve ikinci alacaklılar toplantısına davet ilanı,Bankruptcy estate with potential for creditor bid
+TR-ILN02488835,L3,creditor_bid_target,52.5,40,55.0,5,0,0,0,0,0,5,4,0,🇹🇷 Solar Wind Green Gls Enerji Limited Şirketi,Bankruptcy proceedings,,İflas kararı ve iflasın açılmasına ilişkin ilanen tebliğ,Bankruptcy estate with potential for creditor bid
+US-cacb-2:26-bk-16030,L3,creditor_bid_target,47.5,40,55.0,0,0,0,0,0,0,0,0,0,🇺🇸 Bella Assets LLC,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Chapter 7 bankruptcy with potential for asset sale
+US-cacb-6:26-bk-14868,L3,creditor_bid_target,47.5,40,55.0,0,0,0,0,0,0,0,0,0,🇺🇸 Cecilia Tech Inc.,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Chapter 7 bankruptcy with potential for asset sale
+TR-ILN02489129,L3,creditor_bid_target,47.5,40,55.0,0,0,0,0,0,0,0,1,0,🇹🇷 OSMANLI GIDA İNŞAAT MALZEMELERİ TAAHHÜT SANAYİ VE TİCARET ANONİM ŞİRKETİ,Bankruptcy proceedings,,İflasın Açılması ve Adi Tasfiyede Birinci Alacaklılar Davet İlanı,Bankruptcy estate with potential for creditor bid
+TR-ILN02487297,L3,creditor_bid_target,47.5,40,55.0,0,0,0,0,0,0,0,1,0,🇹🇷 İflasın açıldığına dair ilanen tebliğ,Bankruptcy proceedings,,İflasın açıldığına dair ilanen tebliğ,Bankruptcy estate with potential for creditor bid
+TR-ILN02483187,L3,creditor_bid_target,47.5,40,55.0,0,0,0,0,0,0,0,1,0,🇹🇷 İflasının açılması ve alacaklılara çağrı,Bankruptcy proceedings,,İflasının açılması ve alacaklılara çağrı,Bankruptcy estate with potential for creditor bid
+TR-ILN02489080,L3,creditor_bid_target,47.5,40,45.0,5,0,0,0,0,0,5,4,0,🇹🇷 İflasın açılmasına ilişkin ilanen tebliği,Bankruptcy proceedings,,İflasın açılmasına ilişkin ilanen tebliği,Bankruptcy estate with potential for creditor bid
+TR-ILN02490527,L3,going_concern_sale,47.5,40,45.0,5,0,0,0,0,0,5,2,0,🇹🇷 Duruşma gün ve saatinin ilanen tebliği,Bankruptcy proceedings,,Duruşma gün ve saatinin ilanen tebliği,Going concern under protection with potential for sale
+TR-ILN02490615,L3,going_concern_sale,47.5,40,45.0,5,0,0,0,0,0,5,2,0,🇹🇷 Konkordato mühlet kararının ilanen tebliği,Bankruptcy proceedings,,Konkordato mühlet kararının ilanen tebliği,Going concern under protection with potential for sale
+TR-ILN02489370,L3,noise,47.5,40,45.0,5,0,0,0,0,0,5,2,0,🇹🇷 Mahkeme kararının ilanen tebliği,Bankruptcy proceedings,,Mahkeme kararının ilanen tebliği,No substance or evidence of a viable trading entity
+TR-ILN02489038,L3,noise,47.5,40,45.0,5,0,0,0,0,0,5,2,0,🇹🇷 Konkordato mühletinin uzatılmasına ilişkin mahkeme kararı,Bankruptcy proceedings,,Konkordato mühletinin uzatılmasına ilişkin mahkeme kararı,No substance or evidence of a viable trading entity
+TR-ILN02489076,L3,noise,47.5,40,45.0,5,0,0,0,0,0,5,5,0,🇹🇷 Konkordato tedbirlerinin kaldırılması ve komiser heyetinin görevine son verilmesinin ilanen tebliği,Bankruptcy proceedings,,Konkordato tedbirlerinin kaldırılması ve komiser heyetinin görevine son verilmesinin ilanen tebliği,No substance or evidence of a viable trading entity
+TR-ILN02489106,L3,noise,47.5,40,45.0,5,0,0,0,0,0,5,5,0,🇹🇷 Konkordato Talebinin Reddi ve Kesin Mühletin Kaldırılmasının İlanen Tebliği,Bankruptcy proceedings,,Konkordato Talebinin Reddi ve Kesin Mühletin Kaldırılmasının İlanen Tebliği,No substance or evidence of a viable trading entity
+TR-ILN02489087,L3,noise,47.5,40,45.0,5,0,0,0,0,0,5,5,0,🇹🇷 Konkordato kesin mühlet kararının ilanen tebliği,Bankruptcy proceedings,,Konkordato kesin mühlet kararının ilanen tebliği,No substance or evidence of a viable trading entity
+TR-ILN02489092,L3,noise,47.5,40,45.0,5,0,0,0,0,0,5,5,0,🇹🇷 Duruşma gün ve saatinin ilanen tebliği,Bankruptcy proceedings,,Duruşma gün ve saatinin ilanen tebliği,No substance or evidence of a viable trading entity
+TR-ILN02489006,L3,noise,47.5,40,45.0,5,0,0,0,0,0,5,2,0,🇹🇷 Mahkeme kararının ilanen tebliği,Bankruptcy proceedings,,Mahkeme kararının ilanen tebliği,No substance or evidence of a viable trading entity
+TR-ILN02489031,L3,creditor_bid_target,42.5,40,45.0,0,0,0,0,0,0,0,1,0,🇹🇷 BORDEGO ELEKTRONİK TİC. PAZ. LTD.ŞTİ,Bankruptcy proceedings,,İflasın Açılması İlanı,Bankruptcy estate with potential for creditor bid
+TR-ILN02489775,L3,creditor_bid_target,42.5,40,45.0,0,0,0,0,0,0,0,1,0,🇹🇷 İflas kararının ilanen tebligatı,Bankruptcy proceedings,,İflas kararının ilanen tebligatı,Bankruptcy estate with potential for creditor bid
+TR-ILN02490681,L3,going_concern_sale,42.5,40,45.0,0,0,0,0,0,0,0,1,0,🇹🇷 Konkordato geçici mühlet kararının ilanen tebliği,Bankruptcy proceedings,,Konkordato geçici mühlet kararının ilanen tebliği,Going concern under protection with potential for sale
+TR-ILN02490407,L3,noise,42.5,40,45.0,0,0,0,0,0,0,0,1,0,🇹🇷 Konkordato davasının reddine ilişkin mahkeme kararı,Bankruptcy proceedings,,Konkordato davasının reddine ilişkin mahkeme kararı,No substance or evidence of a viable trading entity
+TR-ILN02490220,L3,noise,42.5,40,45.0,0,0,0,0,0,0,0,1,0,🇹🇷 Konkordato geçici mühlet kararının uzatılması tebliği,Bankruptcy proceedings,,Konkordato geçici mühlet kararının uzatılması tebliği,No substance or evidence of a viable trading entity
+TR-ILN02489916,L3,noise,42.5,40,45.0,0,0,0,0,0,0,0,1,0,🇹🇷 Konkordato Mühlet Kararı tebliği,Bankruptcy proceedings,,Konkordato Mühlet Kararı tebliği,No substance or evidence of a viable trading entity
+TR-ILN02489368,L3,noise,42.5,40,45.0,0,0,0,0,0,0,0,1,0,🇹🇷 Konkordatonun reddi kararı,Bankruptcy proceedings,,Konkordatonun reddi kararı,No substance or evidence of a viable trading entity
+TR-ILN02489217,L3,noise,42.5,40,45.0,0,0,0,0,0,0,0,1,0,🇹🇷 Konkordato Komiserliği'nden alacaklılara çağrı,Bankruptcy proceedings,,Konkordato Komiserliği'nden alacaklılara çağrı,No substance or evidence of a viable trading entity
+TR-ILN02489012,L3,noise,42.5,40,45.0,0,0,0,0,0,0,0,1,0,🇹🇷 Konkordato talebinin feragat nedeni ile reddi ve tüm tedbirlerin kaldırılmasının ilanen tebliği,Bankruptcy proceedings,,Konkordato talebinin feragat nedeni ile reddi ve tüm tedbirlerin kaldırılmasının ilanen tebliği,No substance or evidence of a viable trading entity
+TR-ILN02488997,L3,noise,42.5,40,45.0,0,0,0,0,0,0,0,1,0,🇹🇷 Konkordato Geçici Mühlet Kararının  İlanen Tebliği,Bankruptcy proceedings,,Konkordato Geçici Mühlet Kararının  İlanen Tebliği,No substance or evidence of a viable trading entity
+TR-ILN02488993,L3,noise,42.5,40,45.0,0,0,0,0,0,0,0,1,0,🇹🇷 Konkordato Davasının Reddi ve Mühlet kararının kaldırılması Kararının İlanen Tebliği,Bankruptcy proceedings,,Konkordato Davasının Reddi ve Mühlet kararının kaldırılması Kararının İlanen Tebliği,No substance or evidence of a viable trading entity
+TR-ILN02490640,L3,noise,35.0,40,30.0,0,0,0,0,0,0,0,0,0,🇹🇷 Duruşma gün ve saatinin ilanen tebliği,Bankruptcy proceedings,,Duruşma gün ve saatinin ilanen tebliği,"Bankruptcy proceedings with no charges, accounts, or website"
+TR-ILN02490575,L3,noise,35.0,40,30.0,0,0,0,0,0,0,0,0,0,🇹🇷 Duruşma gün ve saatinin ilanen tebliği,Bankruptcy proceedings,,Duruşma gün ve saatinin ilanen tebliği,"Bankruptcy proceedings with no charges, accounts, or website"
+TR-ILN02489522,drop,noise,2.5,0,5.0,0,0,0,0,0,0,0,0,0,🇹🇷 Tasfiyenin tatili ilanı,Bankruptcy proceedings,,Tasfiyenin tatili ilanı,Deceased-estate liquidation with no corporate target
+US-flsb-26-17894,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Brenda Saavedra,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-txsb-26-34280,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Kileylynn Anna Marie Graham,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-cacb-2:26-bk-16027,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Ivette Franco,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-cacb-8:26-bk-11859,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Nicole Kimiko Huey,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-cacb-2:26-bk-16028,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Corrie Craig Brashars,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-cacb-2:26-bk-16026,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Kuper Jason Almazan,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-cacb-6:26-bk-14876,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Donald J. Vaillancourt and Vanessa E. Vaillancourt,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-flsb-26-17889,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Andre Lee Anderson,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-flsb-26-17890,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Yusnely Zuaznabar Rodriguez,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-flsb-26-17891,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Mariano Cesar Calero Rayo,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-flsb-26-17892,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Juan Carlos Rodriguez,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-cacb-2:26-bk-16025,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Gayul Yoo,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-cacb-6:26-bk-14875,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Cloey Justine Heckendorn,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-cacb-2:26-bk-16024,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Aaron Cardenas and Germal Lamar Cardenas,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-cacb-6:26-bk-14874,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Leslie Joanna Martinez,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-ilnb-26-10105,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Anthony Edwin Micelli,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-ilnb-26-10103,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Jenina Zarah Grace Lanzi,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-ilnb-26-10107,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Draper O Harris,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-njb-26-16982,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Janessa Lynn Ridgway and David Michael Ridgway,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-cacb-6:26-bk-14864,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Jesus Santillan Negrete,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-flsb-26-17863,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Richard Michael Knolmayer,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-cacb-6:26-bk-14863,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 James Aiden Vandebrake,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-njb-26-16978,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Angeline Gonzalez,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-ilnb-26-10096,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Amina Fatimah Hart,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-ilnb-26-10097,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Ted Cidral Dacosta,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-ilnb-26-10098,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Harry J Williams,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-ilnb-26-10099,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Corey Jay Hoskin,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-ilnb-26-10100,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Latoya Toneil Underwood,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-ilnb-26-10101,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Nexus Princess-Renee Harris,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-cacb-8:26-bk-11855,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Jose Buenrostro,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-flsb-26-17888,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Joshua Elijah Eugene,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-cacb-6:26-bk-14873,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Steven Harold Hastings and Colleen Kay Hastings,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtors with no business or assets to acquire
+US-cacb-6:26-bk-14871,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,"🇺🇸 Eliazar Rios, Jr.",In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-cacb-2:26-bk-16021,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Frank James Ubanos,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-cacb-2:26-bk-16022,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Angelica Bonilla,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-cacb-2:26-bk-16020,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Gloria S Campa,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-cacb-2:26-bk-16023,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Victor Modesto Mendoza,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-cacb-6:26-bk-14872,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Claudia Ivonne Larnu Solis,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-cacb-6:26-bk-14870,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Rylana Denise Walker,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-flsb-26-17884,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Mercedes Alemany,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-flsb-26-17885,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Cristina Isabel Maldonado Refunjol,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-flsb-26-17887,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Sharod Jamar Graham,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-cacb-2:26-bk-16019,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Bernardo De Jesus Lopez,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-cacb-6:26-bk-14869,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Asuncion Quintero,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-deb-26-10982,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,"🇺🇸 Urban Medspa & Weight Loss Center Charlotte, P.C.",In bankruptcy,,Chapter 11 bankruptcy (reorganisation),No clear indication of business or assets to acquire
+US-cacb-2:26-bk-16018,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Jennifer G Hernandez Munoz,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-cacb-2:26-bk-16016,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Lawrence R. Heltzer,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-cacb-2:26-bk-16015,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Irene Gonzalez,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-cacb-1:26-bk-11309,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Gaspar G. Lopez,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-cacb-9:26-bk-10877,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Maria Elena Mendez,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-flsb-26-17882,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Analay Inserne Cernada,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-flsb-26-17883,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Niurbis Hernandez Del Sol,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-txsb-26-50087,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Ramon Avila Montoya and Nora Elia Avila,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-njb-26-16986,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Estefani Parache Jorge,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-cacb-2:26-bk-16014,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Jake Wildon Recinos,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-cacb-2:26-bk-16013,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Monica Gaytan,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-ilnb-26-10114,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Chotikarn Nikrothanond,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-flsb-26-17878,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Grisel Jimenez,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-flsb-26-17880,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Sulkary Lumpuy Perez,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-ilnb-26-10113,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,"🇺🇸 Samuel Salazar, Jr.",In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-njb-29-00010,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Miscellaneous Entry,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-njb-29-00007,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Miscellaneous Entry,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-ilnb-26-10131,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Wilfrido Pinon,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-ilnb-26-10130,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Sikandar Hayat,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-ilnb-26-10129,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Joanna Munoz,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-cacb-6:26-bk-14878,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Tamara Lynette Gray,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-cacb-6:26-bk-14877,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 David Michael Martin and Melody Rose Martin,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-ilnb-26-10128,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Megan C Mauch,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-ilnb-26-10126,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Curtis L Strayhorne,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-ilnb-26-10125,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Christina M Johnson,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-ilnb-26-10124,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Ryan N Lopez,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-cacb-2:26-bk-16032,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Jim Francis Sinarjo,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-ilnb-26-10123,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Abel Murillo,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-flsb-26-17895,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Lazaro M Mena Gonzalez,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-cacb-2:26-bk-16031,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Maria Denise Jones,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-flsb-26-17870,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Wilmer Antonio Martinez Martinez,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-cacb-1:26-bk-11308,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Natalie Tanijian,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-flsb-26-17866,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Brandon Angelo Guidos,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-flsb-26-17868,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Marisol Cascio,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-flsb-26-17869,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Olga A Perez,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-txsb-26-10102,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Maria Inez Martinez,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-nysb-26-11429,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Brianna Jean Blount,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-njb-26-16985,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 JoAnna D Brown,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-flsb-26-17865,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Kyeng Brandon Beeman,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-njb-26-16984,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Marvin Cahn,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-txsb-26-34274,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Jesus Eduardo Martinez Zambrano and Staecy P. Martinez,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-nysb-26-35641,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Michael V Santoro and Ariel Maria Santoro,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-cacb-2:26-bk-16005,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Celia Martinez,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-ilnb-26-10104,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Vitaliy Lazaryev,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-ilnb-26-80997,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Amanda Nicole Craig,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-cacb-2:26-bk-16011,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Babu Chowdhury,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-flsb-26-17874,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Mirta Fernandez De Armas,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-flsb-26-17876,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Maria Del Carmen Alfonso,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-flsb-26-17875,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Magiel Jacobus Botha,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-ilnb-26-10111,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Anishiea C Smith,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-cacb-6:26-bk-14866,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Christine Agatha Cox,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-cacb-2:26-bk-16008,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Edgar Augusto Paredes and Mayra Liseth Paredes,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtors with no business or assets to acquire
+US-cacb-6:26-bk-14867,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Torrey Everett Rucker and Cara Wryn Rucker,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtors with no business or assets to acquire
+US-flsb-26-17873,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 John Frederick Norton,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-cacb-6:26-bk-14865,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Jason William Weller and Amy Lynn Weller,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtors with no business or assets to acquire
+US-txsb-26-20200,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Leonard Dale Garrison and Sheila Marie Garrison,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtors with no business or assets to acquire
+US-flsb-26-17872,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Jeanne Raymonde Celestin,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-flsb-26-17871,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Adriana Cepero,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-txsb-26-34276,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Thao Kim Luu,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-ilnb-26-10109,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Nicole Givens,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-njb-29-00008,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Miscellaneous Entry,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-njb-29-00009,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Miscellaneous Entry,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-njb-29-00011,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Miscellaneous Entry,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-nysb-26-35635,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Joshua Kamae,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-cacb-2:26-bk-15990,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Claudia Leal,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-flsb-26-17847,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Astrid Mesa,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-cacb-8:26-bk-11853,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Jonathan Rosales Dominguez,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-njb-26-16962,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Hector Luis Jimenez,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-flsb-26-17845,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Christopher A Utkus,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-flsb-26-17842,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Deborah Karen Farrell Saldenha,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-nysb-26-11427,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Simon Mejias,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-nysb-26-11428,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Johnson Nana Danquah,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-deb-26-10974,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Dennis Harmon,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-cacb-2:26-bk-15989,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Jordan Jereme Chavez,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-flsb-26-17841,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Dorca Gil,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-njb-26-16961,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Joseph F. Annunziata,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-njb-26-16960,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Sulaiman T Jalloh,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-cacb-2:26-bk-15987,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Jennifer Garcia,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-cacb-2:26-bk-16004,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Fernando Hernandez,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-cacb-2:26-bk-16002,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Nora Edit Gamboa Blanco,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-njb-26-16977,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Jasmine Elizabeth Green,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-ilnb-26-10094,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Aaron David Cervantes,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-flsb-26-17862,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Gregorio Rodriguez,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-cacb-8:26-bk-11854,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 David Elias Nino,In bankruptcy,,Chapter 11 bankruptcy (reorganisation),Individual debtor with no business or assets to acquire
+US-cacb-2:26-bk-16001,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Concepcion Haydee Rodriguez,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-cacb-6:26-bk-14861,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Adrienne Estella Lewis,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-flsb-26-17861,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Belkis Valiente Gonzalez,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-njb-26-16976,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Elizabeth Allen,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-ilnb-26-10093,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Temitope Ezekiel Komolafe,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-flsb-26-17857,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Samuel Humberto Uribe Giugni and Glorimar De los Angeles Vannucci Carrasquero,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-flsb-26-17856,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Rosalba Lazo-Funes,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-flsb-26-17858,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Yaima Rabaza,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-cacb-2:26-bk-15998,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Nancy Irene Fry,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-njb-26-16969,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Danielle Rutigliano,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-njb-26-16970,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Kwilonu H. Voker,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-flsb-26-17850,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Guyen Manuel Quintana,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-deb-26-10975,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Susan L. Griffith,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-cacb-2:26-bk-15992,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Maria Pilar Payan,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-flsb-26-17849,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Ivan Alberto Calderon Rivera,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-ilnb-26-10089,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Deidre Walker,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-nysb-26-35638,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 John LaLima,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-nysb-26-35639,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Ian Heckler,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-nysb-26-35637,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Erika Bergen,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-njb-26-16964,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Charmaine N. Worrell,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-flsb-26-17848,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Frank Yasmani Lopez Salomon,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-cacb-2:26-bk-15991,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Amy Anaya Vera,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-nysb-26-35636,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Thomas Gleason and Elva Gleason,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-txsb-26-80421,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Melissa Rae Jones,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-cacb-8:26-bk-11852,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Axel Ramirez,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-cacb-2:26-bk-15999,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Verlen William Mitchell,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-cacb-2:26-bk-16000,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Kevin Michael Holbert,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-cacb-6:26-bk-14860,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Cesar A Valencia,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-nysb-26-35640,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Herman Stein and Nina Ricci Stein,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-flsb-26-17853,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Isis Bauza,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-njb-26-16972,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Deirdre L. Nelson,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-njb-26-16973,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,"🇺🇸 James F. Baker, Jr.",In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-txsb-26-34272,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Dustin Robert Barker,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-flsb-26-17852,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Erika Peters,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-cacb-2:26-bk-15997,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Jesus R Contreras,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-cacb-2:26-bk-15996,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Karla Beatriz Garcia Diaz,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-flsb-26-17851,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Antonio Pampillo,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-cacb-2:26-bk-15994,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Miguel Perez,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-cacb-2:26-bk-15995,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Diego Castro Sandoval,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-njb-26-16968,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Sunggil Kim and KyungHwa Kimkang,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
