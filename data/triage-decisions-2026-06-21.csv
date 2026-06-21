@@ -1,0 +1,53 @@
+id,tier,category,final,tier_base,heuristic_score,adjustments,phantom,charges,outstanding_charges,website,accounts_dormant,co_ip_firm,same_ip_firm_today,sic_cluster_size,company,ch_status,ch_accounts,notice_type,why
+https://www.thegazette.co.uk/id/notice/5158248,L2,pre_pack_buyer_search,98.5,60,97.0,20,0,10,5,5,0,0,0,4,HAMILTON HEIGHTS LTD,active,total-exemption-full,Winding-Up Orders,Winding-up order with active company status and outstanding charges suggests assets may be available
+https://www.thegazette.co.uk/id/notice/5158066,L2,pre_pack_buyer_search,70.5,60,81.0,0,0,0,0,0,0,0,0,3,ANEL ENGINEERING & CONTRACTING LIMITED,liquidation,small,Winding-Up Orders,Winding-up order with liquidation status and small accounts filed suggests assets may be available
+US-flsb-26-18111,L2,creditor_bid_target,62.5,60,65.0,0,0,0,0,0,0,0,0,0,"🇺🇸 Bespoke Aesthetics, Inc.",In bankruptcy,,Chapter 11 bankruptcy (reorganisation),Chapter 11 bankruptcy with potential for 363 asset sale suggests assets may be available
+https://www.thegazette.co.uk/id/notice/5158068,L3,pre_pack_buyer_search,52.5,40,65.0,0,0,0,0,0,0,0,0,4,MIB PROPERTIES NW LTD,active,micro-entity,Winding-Up Orders,Winding-up order with active company status and micro-entity accounts suggests assets may be available
+https://www.thegazette.co.uk/id/notice/5158198,L3,pre_pack_buyer_search,51.5,40,63.0,0,0,0,0,0,0,0,0,3,ELEMENT FLOORING SUPPLIES LTD,active,unaudited-abridged,Winding-Up Orders,Winding-up order with active company status and unaudited-abridged accounts suggests assets may be available
+https://www.thegazette.co.uk/id/notice/5157523,watch,noise,26.0,20,52.0,-10,-15,0,0,5,0,0,0,1,T&C TRAVEL LIMITED,active,total-exemption-full,Winding-Up Orders,Phantom/shell company indicators and overdue confirmation statement suggest no substantial assets
+US-ilnb-26-10363,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Noor F. Said,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-ilnb-26-10361,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Jose Refugio Hernandez,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-cacb-2:26-bk-16183,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Joshua Anthony Aguilar,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-cacb-2:26-bk-16182,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Sevak Tunyan,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-txsb-26-80430,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,"🇺🇸 John Whitfield Mecom, III",In bankruptcy,,Chapter 11 bankruptcy (reorganisation),Individual debtor with no business or assets to acquire
+US-njb-26-17136,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Felix Nunez,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-cacb-2:26-bk-16181,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Jesus Zavala and Alicia Zavala,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-cacb-8:26-bk-11904,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Josue Martinez Oliva,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-nysb-26-35657,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Daniel J. Frisbie and Judy E. Frisbie,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-cacb-8:26-bk-11903,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Isaiah Bedolla,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-nysb-26-35656,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Rosani J. George,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-nysb-26-35655,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Paul J. Foster,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-cacb-6:26-bk-14984,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Karla Annette Diaz,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-njb-26-17135,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Nebojsa Rudovic,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-cacb-6:26-bk-14983,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Virgilio Palomino,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-njb-29-00008,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Miscellaneous Entry,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business/assets to acquire
+US-njb-29-00009,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Miscellaneous Entry,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business/assets to acquire
+US-njb-29-00011,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Miscellaneous Entry,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business/assets to acquire
+US-njb-29-00010,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Miscellaneous Entry,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business/assets to acquire
+US-njb-29-00007,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Miscellaneous Entry,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business/assets to acquire
+US-cacb-8:26-bk-11905,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Michael Jared White,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business/assets to acquire
+US-flsb-26-18113,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Luciano Bruksch Fossa,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-ilnb-26-10355,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Dominique Davis,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-cacb-2:26-bk-16177,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Anthony Heraldez and Desiree Marie Heraldez,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-ilnb-26-10351,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Lashon A Goodwin and Laura E Winston,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-ilnb-26-10350,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Denise B Speaks,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-ilnb-26-10349,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Betty J McKenny,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-ilnb-26-10348,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Latonia Upshaw,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-cacb-2:26-bk-16180,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Kevin Nicolas Perez Pelcastre,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-cacb-8:26-bk-11902,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Antoinette Mendoza,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-cacb-2:26-bk-16179,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Jai Tyree Austin,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-cacb-8:26-bk-11901,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Yolanda Peralta Madali,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-flsb-26-18117,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Ashley Merlyn Jarquin,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-flsb-26-18116,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,"🇺🇸 Richard John Petrosa, II and Melissa Lynn Petrosa",In bankruptcy,,Chapter 11 bankruptcy (reorganisation),Individual debtor with no business or assets to acquire
+US-nysb-26-35654,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Elvis R Jimenez,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-ilnb-26-10357,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Barbara E. Walendzik,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-cacb-1:26-bk-11342,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,"🇺🇸 Maria Guanzon and Virgelio Oraller Guanzon, Jr.",In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-cacb-2:26-bk-16178,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Craig Alan Stepp,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-cacb-8:26-bk-11900,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Francisco Javier Oropeza,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-ilnb-26-10356,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Camillya C Jackson,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-cacb-6:26-bk-14980,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Eric Cam Lai,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-cacb-6:26-bk-14979,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Rodmond John Feuerborn,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+US-cacb-6:26-bk-14978,drop,noise,0.0,0,0.0,0,0,0,0,0,0,0,0,0,🇺🇸 Wendy Josefina De Vera,In bankruptcy,,Chapter 7 bankruptcy (liquidation),Individual debtor with no business or assets to acquire
+https://www.thegazette.co.uk/id/notice/5158205,drop,noise,-6.5,0,17.0,-15,-15,0,0,0,0,0,0,0,CARDINAL LOGISTICS AND SOLUTIONS LIMITED,active,,Winding-Up Orders,Phantom/shell company indicators and no filing history suggest no substantial assets
+https://www.thegazette.co.uk/id/notice/5158020,drop,noise,-9.0,0,12.0,-15,-15,0,0,0,0,0,0,0,PARTICLE PICTURES LTD,active,total-exemption-full,Winding-Up Orders,Phantom/shell company indicators and overdue accounts suggest no substantial assets
+https://www.thegazette.co.uk/id/notice/5158062,drop,noise,-15.0,0,0.0,-15,-15,0,0,0,0,0,0,0,MT SOLUTIONS SCOT LTD,liquidation,,Winding-Up Orders,Phantom/shell company indicators and no accounts filed suggest no substantial assets
